@@ -18,6 +18,7 @@ import TableHead from "@mui/material/TableHead";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Button } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 interface Column {
   field: string;
@@ -36,6 +37,7 @@ interface TableProps {
   rowsPerPageOptions?: any[];
   onPageChange?: (newPage: number) => void;
   onRowsPerPageChange?: (newRowsPerPage: number) => void;
+  onClick?: any;
 }
 
 interface TablePaginationActionsProps {
@@ -127,7 +129,7 @@ const TableList: React.FC<TableProps> = ({
 }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageOptions[0]);
-
+  const navigate = useNavigate();
   const handleChangePage = (_event: any, newPage: number) => {
     setPage(newPage);
     onPageChange && onPageChange(newPage);
@@ -140,6 +142,12 @@ const TableList: React.FC<TableProps> = ({
     setPage(0);
     onRowsPerPageChange &&
       onRowsPerPageChange(parseInt(event.target.value, 10));
+  };
+
+  const onEditButtonClick = (rowData: any) => {
+    if (rowData) {
+      navigate(`/cadastros/cliente/editar/${rowData.id}`);
+    }
   };
 
   return (
@@ -179,7 +187,11 @@ const TableList: React.FC<TableProps> = ({
                         width: "100%",
                       }}
                     >
-                      <Button variant="contained" color="info">
+                      <Button
+                        variant="contained"
+                        color="info"
+                        onClick={() => onEditButtonClick(row)}
+                      >
                         <ModeEditOutlineIcon
                           style={{ width: 20 }}
                           color="inherit"

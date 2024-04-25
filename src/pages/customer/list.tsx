@@ -90,6 +90,7 @@ const List: React.FC = () => {
       <Search value={filterText} onChange={handleFilterChange} />
       <TableList
         columns={columns}
+        onClick={() => navigate("/cadastros/cliente/editar")}
         rows={filterText ? filteredRows : customers}
       />
     </Container>

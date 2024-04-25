@@ -208,7 +208,7 @@ export default function DrawerMenu({ children }: any) {
           >
             <MenuIcon />
           </IconButton>
-          <Title>Nexus ERP</Title>
+          <Title>NEXUS</Title>
           <CheckIcon style={{ marginRight: "5px" }} />
           <TitleVersion>version 1.0.0</TitleVersion>
         </MyToolBar>
