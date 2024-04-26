@@ -54,7 +54,7 @@ const CustomerEdit: React.FC = () => {
   const [number, setNumber] = useState<string>("");
   const [country, _setCountry] = useState<string>("Brasil");
 
-  let validation: boolean =
+  const validation: boolean =
     !name ||
     !cpf ||
     !phone ||
@@ -67,22 +67,6 @@ const CustomerEdit: React.FC = () => {
     !uf ||
     !complement ||
     !number;
-
-  let data = {
-    name: name,
-    cpf: cpf,
-    phone: phone,
-    email: email,
-    cep: cep,
-    sex: sex,
-    streetName: streetName,
-    neighborhood: neighborhood,
-    locality: locality,
-    uf: uf,
-    complement: complement,
-    number: number,
-    country: country,
-  };
 
   const clear = (): void => {
     setName("");
@@ -146,14 +130,9 @@ const CustomerEdit: React.FC = () => {
     setNumber(customer.number);
   };
 
-  const { save } = useCustomerService();
-
   const { id } = useParams();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    await save(data);
-  };
+  const { update } = useCustomerService();
 
   const handleCepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value.replace(/[^\d]/g, "");
@@ -426,7 +405,7 @@ const CustomerEdit: React.FC = () => {
           </GridContent>
           <Button
             disabled={validation}
-            onClick={handleSubmit}
+            onClick={update}
             color="primary"
             variant="contained"
             startIcon={<CheckOutlined />}

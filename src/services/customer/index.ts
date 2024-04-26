@@ -8,9 +8,9 @@ export const useCustomerService = () => {
 
     const navigate = useNavigate();
 
-    const save = async (cliente: ICustomer): Promise<ICustomer | undefined> => {
+    const save = async (customer: ICustomer): Promise<ICustomer | undefined> => {
         try {
-            const response: AxiosResponse<ICustomer> = await client.post<ICustomer>("/clients", cliente);
+            const response: AxiosResponse<ICustomer> = await client.post<ICustomer>("/clients", customer);
             toast.success("Salvo com sucesso!!!");
             navigate("listar");
             return response.data;
@@ -19,5 +19,20 @@ export const useCustomerService = () => {
             navigate("/cadastros/cliente");
         }
     }
-    return { save }
+
+    const update = async (customerId: any, newData: any): Promise<any | undefined> => {
+        try {
+            const response: AxiosResponse<ICustomer> = await client.put<ICustomer>(`/clients/${customerId}`, newData);
+            console.log("Dados do cliente atualizados:", response.data);
+            toast.success("Dados do cliente atualizados com sucesso!!!");
+            navigate("listar");
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao atualizar os dados do cliente:", error);
+            toast.error("Erro ao atualizar os dados do cliente!!!");
+            throw error;
+        }
+    };
+
+    return { save, update }
 }
