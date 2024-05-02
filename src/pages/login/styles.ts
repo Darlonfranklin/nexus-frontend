@@ -43,4 +43,5 @@ export const Logo = styled.div`
 
 export const Button = styled(ButtonUI)`
   margin-left: 1px !important;
+  width: 100%;
 `;

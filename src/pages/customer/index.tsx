@@ -50,6 +50,8 @@ const Customer: React.FC = () => {
   const [number, setNumber] = useState<string>("");
   const [country, _setCountry] = useState<string>("Brasil");
 
+  const selectComboSexo = ["Não informado", "Masculino", "Feminino"];
+
   let data = {
     name: name,
     cpf: cpf,
@@ -212,8 +214,11 @@ const Customer: React.FC = () => {
                 ),
               }}
             >
-              <MenuItem value="masculino">Masculino</MenuItem>
-              <MenuItem value="feminino">Feminino</MenuItem>
+              {selectComboSexo.map((item, index) => (
+                <MenuItem key={index} value={item}>
+                  {item}
+                </MenuItem>
+              ))}
             </Input>
           </GridContent>
 

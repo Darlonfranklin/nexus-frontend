@@ -10,23 +10,31 @@ import {
   ImageLogo,
   Logo,
 } from "./styles";
-import { CancelOutlined } from "@mui/icons-material";
 import { InputAdornment, Paper } from "@mui/material";
+import { useAuth } from "../../contexts/auth";
+import { useState } from "react";
 
 const LoginPage: React.FC = () => {
+  const { signIn } = useAuth();
+
+  const [username, setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   return (
     <Container maxWidth="xs">
       <BoxContainer component={Paper}>
         <Logo>
           <ImageLogo src="/nexus.png" />
         </Logo>
+
         <GridContent>
           <Input
             size="small"
             label="Usuário do sistema"
-            name="country"
+            name="user"
             type="text"
-            value={undefined}
+            value={username}
+            onChange={(e: any) => setUserName(e.target.value)}
             fullWidth
             InputLabelProps={{
               shrink: true,
@@ -47,9 +55,11 @@ const LoginPage: React.FC = () => {
           <Input
             size="small"
             label="Senha"
-            name="phone"
+            name="password"
             type="password"
             fullWidth
+            value={password}
+            onChange={(e: any) => setPassword(e.target.value)}
             InputLabelProps={{
               shrink: true,
               style: { fontSize: "0.9rem" },
@@ -62,18 +72,15 @@ const LoginPage: React.FC = () => {
                 </InputAdornment>
               ),
             }}
-            value={undefined}
           />
         </GridContent>
-        <Button color="primary" variant="contained" startIcon={<LoginIcon />}>
-          Acessar
-        </Button>
         <Button
-          color="error"
+          onClick={() => signIn(username, password)}
+          color="primary"
           variant="contained"
-          startIcon={<CancelOutlined />}
+          startIcon={<LoginIcon />}
         >
-          Cancelar
+          Acessar
         </Button>
       </BoxContainer>
     </Container>
