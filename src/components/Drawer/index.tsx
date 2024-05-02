@@ -191,6 +191,13 @@ export default function DrawerMenu({ children }: any) {
     },
   ];
 
+  const menusItems = [
+    menuPerson,
+    menuEmployees,
+    menuMovimentation,
+    menuPurchases,
+  ];
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -226,10 +233,9 @@ export default function DrawerMenu({ children }: any) {
         <Logo>
           {open ? <ImageP src="/nexus.png" /> : <ImageL src="/logo.png" />}
         </Logo>
-        <ExpandableList items={menuPerson} />
-        <ExpandableList items={menuMovimentation} />
-        <ExpandableList items={menuEmployees} />
-        <ExpandableList items={menuPurchases} />
+        {menusItems.map((menu: any) => (
+          <ExpandableList items={menu} />
+        ))}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, marginTop: 10 }}>
         <DrawerHeader />
