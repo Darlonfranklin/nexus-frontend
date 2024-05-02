@@ -22,22 +22,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { InputAdornment, MenuItem } from "@mui/material";
 import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
-
-interface ICustomer {
-  name: string;
-  cpf: string;
-  phone: string;
-  email: string;
-  cep: string;
-  sex: string;
-  streetName: string;
-  neighborhood: string;
-  locality: string;
-  uf: string;
-  complement: string;
-  number: string;
-  country: string;
-}
+import { ICustomer } from "../../models/customer";
 
 const CustomerEdit: React.FC = () => {
   const [name, setName] = useState<string>("");
