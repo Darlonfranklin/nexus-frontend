@@ -7,9 +7,9 @@ import { AuthProvider } from "./contexts/auth.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
+    <GlobalStyles />
+    <ToastContainer position="top-right" autoClose={1000} />
     <AuthProvider>
-      <GlobalStyles />
-      <ToastContainer position="top-right" autoClose={1000} />
       <App />
     </AuthProvider>
   </BrowserRouter>

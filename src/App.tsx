@@ -1,8 +1,8 @@
 import "react-toastify/dist/ReactToastify.css";
-import LoginPage from "./pages/login";
+import AuthRoutes from "./routes/auth.routes";
 
 function App() {
-  return <LoginPage />;
+  return <AuthRoutes />;
 }
 
 export default App;

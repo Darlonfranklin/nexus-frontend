@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { AxiosResponse } from "axios";
 import client from "../services/axios";
+import { useNavigate } from "react-router-dom";
 
 type AuthProviderProps = {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return !!isLogged;
   });
 
+  const navigate = useNavigate();
   const signIn = async (username: string, password: string) => {
     try {
       const response: AxiosResponse = await client.post("/login", {
@@ -45,6 +47,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signOut = () => {
     localStorage.removeItem("@nexus.application:token");
     setLogged(false);
+    navigate("");
   };
 
   return (
