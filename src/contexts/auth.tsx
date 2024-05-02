@@ -45,7 +45,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const signOut = () => {
-    localStorage.removeItem("@nexus.application:token");
     setLogged(false);
     navigate("");
   };

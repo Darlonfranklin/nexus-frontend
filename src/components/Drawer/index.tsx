@@ -131,8 +131,8 @@ export default function DrawerMenu({ children }: any) {
         <Logo>
           {open ? <ImageP src="/nexus.png" /> : <ImageL src="/logo.png" />}
         </Logo>
-        {menusItems.map((menu: any) => (
-          <ExpandableList items={menu} />
+        {menusItems.map((menu: any, subIndex: any) => (
+          <ExpandableList key={subIndex} items={menu} />
         ))}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, marginTop: 10 }}>
