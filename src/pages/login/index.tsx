@@ -1,10 +1,10 @@
-import Button from "../../components/Button";
 import Input from "../../components/Input";
 import LoginIcon from "@mui/icons-material/Login";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import KeyIcon from "@mui/icons-material/Key";
 import {
   BoxContainer,
+  Button,
   Container,
   GridContent,
   ImageLogo,

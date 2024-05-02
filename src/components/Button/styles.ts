@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import styled from "styled-components";
 
 export const ButtonUI = styled(Button)`
-    margin-left: 1px !important;
+    margin-left: 9px !important;
     margin-right: 5px !important;
     margin-top: 10px !important;
     font-size: 11.1px !important;

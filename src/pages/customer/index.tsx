@@ -15,7 +15,19 @@ import {
   CancelOutlined,
   CheckOutlined,
   Search,
+  BadgeOutlined,
   VisibilityOutlined,
+  ArticleOutlined,
+  WcOutlined,
+  LocalPhoneOutlined,
+  AlternateEmailOutlined,
+  EditRoadOutlined,
+  EditLocationAltOutlined,
+  LocationCityOutlined,
+  MapOutlined,
+  HomeWorkOutlined,
+  NumbersOutlined,
+  PublicOutlined,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
@@ -146,6 +158,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BadgeOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -164,6 +181,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ArticleOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -183,6 +205,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <WcOutlined />
+                  </InputAdornment>
+                ),
               }}
             >
               <MenuItem value="masculino">Masculino</MenuItem>
@@ -205,6 +232,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalPhoneOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -223,6 +255,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AlternateEmailOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -265,6 +302,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EditRoadOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -283,6 +325,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EditLocationAltOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -301,6 +348,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocationCityOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -319,6 +371,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MapOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -337,6 +394,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <HomeWorkOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -355,6 +417,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <NumbersOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -372,6 +439,11 @@ const Customer: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PublicOutlined />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
