@@ -10,6 +10,7 @@ export const MyToolBar = styled(Toolbar)``;
 export const Title = styled.h4`
   flex-grow: 1;
   font-family: "Poppins", sans-serif;
+  font-size: 12px;
 `;
 
 export const Logo = styled.div`
@@ -30,6 +31,17 @@ export const ImageL = styled.img<IImg>`
   margin-left: ${(props) => (props.open ? null : "15px")};
 `;
 
-export const TitleVersion = styled.h5`
+export const TitleVersion = styled.p`
   font-family: "Poppins", sans-serif;
+  font-size: 12px;
+`;
+
+export const Exit = styled.button`
+  background-color: transparent;
+  color: #fff;
+`;
+
+export const Separator = styled.p`
+  margin-left: 13px;
+  margin-right: 13px;
 `;

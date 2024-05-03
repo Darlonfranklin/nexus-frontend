@@ -14,6 +14,7 @@ export const GridContainer = styled(Grid)``;
 
 export const Container = styled(ContainerUi)`
   height: 100vh; 
+  overflow-y: hidden;
 `;
 
 export const Title = styled.h3`

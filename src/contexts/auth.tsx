@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AxiosResponse } from "axios";
 import client from "../services/axios";
@@ -22,6 +22,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return !!isLogged;
   });
 
+  useEffect(() => {
+    const isLogged = localStorage.getItem("@nexus.application:logged");
+    if (!isLogged) {
+      setLogged(false);
+    }
+  }, []);
+
   const navigate = useNavigate();
   const signIn = async (username: string, password: string) => {
     try {
@@ -34,19 +41,23 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       if (token) {
         localStorage.setItem("@nexus.application:token", token);
+        localStorage.setItem("@nexus.application:logged", "true");
         setLogged(true);
+        navigate("/dashboard");
         toast.success("LOGADO COM SUCESSO!");
       } else {
         toast.error("FALHA AO LOGAR! TOKEN NÃO ENCONTRADO!");
       }
     } catch (error: any) {
-      toast.error("ERRO AO FAZER LOGIN! " + error.message);
+      toast.error("USUÁRIO / SENHA INCORRETOS!");
     }
   };
 
   const signOut = () => {
+    localStorage.removeItem("@nexus.application:logged");
+    localStorage.removeItem("@nexus.application:token");
+    navigate("/login");
     setLogged(false);
-    navigate("");
   };
 
   return (

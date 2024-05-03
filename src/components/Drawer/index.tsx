@@ -8,10 +8,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
-import { ImageL, ImageP, Logo, MyToolBar, Title, TitleVersion } from "./styles";
+import {
+  Exit,
+  ImageL,
+  ImageP,
+  Logo,
+  MyToolBar,
+  Separator,
+  Title,
+  TitleVersion,
+} from "./styles";
 import CheckIcon from "@mui/icons-material/Check";
 import ExpandableList from "../List";
 import menusItems from "../../menus";
+import { useAuth } from "../../contexts/auth";
 
 const drawerWidth = 290;
 
@@ -88,6 +98,8 @@ export default function DrawerMenu({ children }: any) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
+  const { signOut } = useAuth();
+
   function handleDrawerOpen(): void {
     setOpen(true);
   }
@@ -114,7 +126,9 @@ export default function DrawerMenu({ children }: any) {
             <MenuIcon />
           </IconButton>
           <Title>NEXUS</Title>
-          <CheckIcon style={{ marginRight: "5px" }} />
+          <Exit onClick={signOut}>Sair</Exit>
+          <Separator>|</Separator>
+          <CheckIcon style={{ marginRight: "5px", fontSize: 18 }} />
           <TitleVersion>version 1.0.0</TitleVersion>
         </MyToolBar>
       </AppBar>

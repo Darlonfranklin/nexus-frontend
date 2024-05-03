@@ -3,11 +3,13 @@ import DrawerMenu from "../components/Drawer";
 import Customer from "../pages/customer";
 import List from "../pages/customer/list";
 import CustomerEdit from "../pages/customer/edit";
+import Dashboard from "../pages/dashboard";
 
 const AppRoutes: React.FC = () => {
   return (
     <DrawerMenu>
       <Routes>
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="/cadastros">
           <Route path="cliente" element={<Customer />} />
           <Route path="cliente/listar" element={<List />} />

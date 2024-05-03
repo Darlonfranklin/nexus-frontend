@@ -34,7 +34,6 @@ import { useNavigate } from "react-router-dom";
 import { InputAdornment, MenuItem } from "@mui/material";
 import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
-import { useAuth } from "../../contexts/auth";
 
 const Customer: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -140,7 +139,7 @@ const Customer: React.FC = () => {
     const formattedPhone = insertMaskInPhone(rawValue.slice(0, 15));
     setPhone(formattedPhone);
   };
-  const { signOut } = useAuth();
+
   return (
     <Container maxWidth="xl">
       <Title>CADASTRO DE CLIENTES</Title>
@@ -477,14 +476,6 @@ const Customer: React.FC = () => {
             onClick={() => navigate("listar")}
           >
             Vizualizar
-          </Button>
-          <Button
-            onClick={signOut}
-            color="error"
-            variant="contained"
-            startIcon={<CancelOutlined />}
-          >
-            Cancelar
           </Button>
         </GridContainer>
       </BoxContainer>

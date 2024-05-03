@@ -1,8 +1,5 @@
-import "react-toastify/dist/ReactToastify.css";
 import AuthRoutes from "./routes/auth.routes";
 
-function App() {
-  return <AuthRoutes />;
-}
+const App: React.FC = () => <AuthRoutes />;
 
 export default App;
