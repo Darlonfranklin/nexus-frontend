@@ -18,6 +18,7 @@ interface SubmenuItem {
 interface MenuItem {
   text: string;
   icon: React.ReactElement;
+  path: string;
   submenus?: SubmenuItem[];
 }
 
@@ -41,7 +42,15 @@ const ExpandableList: React.FC<ExpandableListProps> = ({ items }) => {
     <List>
       {items.map((item, index) => (
         <div key={index}>
-          <ListItemButton onClick={() => handleClick(index)}>
+          <ListItemButton
+            onClick={() => {
+              if (item.path) {
+                navigate(`/${item.path}`);
+              } else {
+                handleClick(index);
+              }
+            }}
+          >
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
             {item.submenus &&

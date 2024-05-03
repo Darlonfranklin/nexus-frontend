@@ -20,8 +20,9 @@ import {
 } from "./styles";
 import CheckIcon from "@mui/icons-material/Check";
 import ExpandableList from "../List";
-import menusItems from "../../menus";
+
 import { useAuth } from "../../contexts/auth";
+import { menusItems } from "../../menus";
 
 const drawerWidth = 290;
 

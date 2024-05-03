@@ -13,6 +13,15 @@ import MarkunreadMailboxIcon from "@mui/icons-material/MarkunreadMailbox";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import DescriptionIcon from "@mui/icons-material/Description";
 import BadgeIcon from "@mui/icons-material/Badge";
+import { Dashboard } from "@mui/icons-material";
+
+const menuDashboard = [
+  {
+    text: "Dashboard",
+    icon: <Dashboard />,
+    path: "dashboard",
+  },
+];
 
 const menuPerson = [
   {
@@ -94,11 +103,10 @@ const menuMovimentation = [
   },
 ];
 
-const menusItems = [
+export const menusItems = [
+  menuDashboard,
   menuPerson,
   menuEmployees,
   menuMovimentation,
   menuPurchases,
 ];
-
-export default menusItems;
