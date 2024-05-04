@@ -7,9 +7,10 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Exit,
+  Hour,
   ImageL,
   ImageP,
   Logo,
@@ -23,6 +24,8 @@ import ExpandableList from "../List";
 
 import { useAuth } from "../../contexts/auth";
 import { menusItems } from "../../menus";
+import Modal from "../Dialog";
+import { Logout, QueryBuilder } from "@mui/icons-material";
 
 const drawerWidth = 290;
 
@@ -97,9 +100,18 @@ const Drawer = styled(MuiDrawer, {
 
 export default function DrawerMenu({ children }: any) {
   const theme = useTheme();
-  const [open, setOpen] = useState(false);
-
   const { signOut } = useAuth();
+
+  const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   function handleDrawerOpen(): void {
     setOpen(true);
@@ -108,6 +120,20 @@ export default function DrawerMenu({ children }: any) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const [time, setTime] = useState<string>("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+      setTime(`${hours}:${minutes}:${seconds}`);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -127,7 +153,14 @@ export default function DrawerMenu({ children }: any) {
             <MenuIcon />
           </IconButton>
           <Title>NEXUS</Title>
-          <Exit onClick={signOut}>Sair</Exit>
+          <Modal handleClose={signOut} open={openModal} cancel={handleClose} />
+          <QueryBuilder style={{ marginRight: "5px", fontSize: 18 }} />
+          <Hour>Hora: {time}</Hour>
+          <Separator>|</Separator>
+          <Exit onClick={handleClickOpen}>
+            <Logout style={{ marginRight: "5px", fontSize: 18 }} />
+            Sair
+          </Exit>
           <Separator>|</Separator>
           <CheckIcon style={{ marginRight: "5px", fontSize: 18 }} />
           <TitleVersion>version 1.0.0</TitleVersion>

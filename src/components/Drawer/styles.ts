@@ -37,8 +37,15 @@ export const TitleVersion = styled.p`
 `;
 
 export const Exit = styled.button`
+  display: flex;
+  align-items: center;
   background-color: transparent;
   color: #fff;
+`;
+
+export const Hour = styled.p`
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
 `;
 
 export const Separator = styled.p`

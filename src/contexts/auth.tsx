@@ -43,8 +43,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem("@nexus.application:token", token);
         localStorage.setItem("@nexus.application:logged", "true");
         setLogged(true);
-        navigate("/dashboard");
         toast.success("LOGADO COM SUCESSO!");
+        navigate("dashboard");
       } else {
         toast.error("FALHA AO LOGAR! TOKEN NÃO ENCONTRADO!");
       }

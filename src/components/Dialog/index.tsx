@@ -5,45 +5,45 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 
-export default function Modal() {
-  const [open, setOpen] = React.useState(false);
+interface IModal {
+  open: boolean;
+  handleClose: () => void;
+  cancel: () => void;
+}
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+const Modal: React.FC<IModal> = ({ open, handleClose, cancel }) => {
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+      <Dialog open={open}>
+        <DialogTitle
+          style={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "#0089BA",
+            color: "#fff",
+            marginBottom: "20px",
+          }}
+        >
+          {"Atenção"}
+          <ReportProblemIcon
+            fontSize={"inherit"}
+            style={{ color: "#FFFF00", marginLeft: "5px" }}
+          />
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending
-            anonymous location data to Google, even when no apps are running.
+            Deseja realmente sair do sistema ?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
+          <Button onClick={handleClose}>OK</Button>
+          <Button onClick={cancel}>CANCELAR</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
   );
-}
+};
+
+export default Modal;

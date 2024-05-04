@@ -142,7 +142,7 @@ const Customer: React.FC = () => {
 
   return (
     <Container maxWidth="xl">
-      <Title>CADASTRO DE CLIENTES</Title>
+      <Title>CADASTRAR CLIENTE</Title>
       <BoxContainer>
         <GridContainer container spacing={1}>
           <GridContent item xs={12} sm={4}>

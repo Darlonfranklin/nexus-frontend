@@ -85,7 +85,7 @@ const List: React.FC = () => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
-        Clientes cadastrados
+        CLIENTES CADASTRADOS
       </Title>
       <Search value={filterText} onChange={handleFilterChange} />
       <TableList

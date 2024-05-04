@@ -9,7 +9,7 @@ const AppRoutes: React.FC = () => {
   return (
     <DrawerMenu>
       <Routes>
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cadastros">
           <Route path="cliente" element={<Customer />} />
           <Route path="cliente/listar" element={<List />} />
