@@ -9,8 +9,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useEffect, useState } from "react";
 import {
+  DateView,
   Exit,
-  Hour,
+  HourView,
   ImageL,
   ImageP,
   Logo,
@@ -25,7 +26,11 @@ import ExpandableList from "../List";
 import { useAuth } from "../../contexts/auth";
 import { menusItems } from "../../menus";
 import Modal from "../Dialog";
-import { Logout, QueryBuilder } from "@mui/icons-material";
+import {
+  CalendarMonthOutlined,
+  Logout,
+  QueryBuilder,
+} from "@mui/icons-material";
 
 const drawerWidth = 290;
 
@@ -122,6 +127,7 @@ export default function DrawerMenu({ children }: any) {
   };
 
   const [time, setTime] = useState<string>("");
+  const [date, setDate] = useState<string>("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -129,7 +135,11 @@ export default function DrawerMenu({ children }: any) {
       const hours = String(now.getHours()).padStart(2, "0");
       const minutes = String(now.getMinutes()).padStart(2, "0");
       const seconds = String(now.getSeconds()).padStart(2, "0");
+      const day = String(now.getDate()).padStart(2, "0");
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const year = String(now.getFullYear());
       setTime(`${hours}:${minutes}:${seconds}`);
+      setDate(`${day}/${month}/${year}`);
     }, 1000);
 
     return () => clearInterval(interval);
@@ -155,7 +165,10 @@ export default function DrawerMenu({ children }: any) {
           <Title>NEXUS</Title>
           <Modal handleClose={signOut} open={openModal} cancel={handleClose} />
           <QueryBuilder style={{ marginRight: "5px", fontSize: 18 }} />
-          <Hour>Hora: {time}</Hour>
+          <HourView>Hora: {time}</HourView>
+          <Separator>|</Separator>
+          <CalendarMonthOutlined style={{ marginRight: "5px", fontSize: 18 }} />
+          <DateView>Data: {date}</DateView>
           <Separator>|</Separator>
           <Exit onClick={handleClickOpen}>
             <Logout style={{ marginRight: "5px", fontSize: 18 }} />

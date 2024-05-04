@@ -10,6 +10,7 @@ type AuthProviderProps = {
 
 interface IAuthContext {
   logged: boolean;
+  loading: boolean;
   signIn(username: string, password: string): Promise<void>;
   signOut(): void;
 }
@@ -22,6 +23,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return !!isLogged;
   });
 
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const isLogged = localStorage.getItem("@nexus.application:logged");
     if (!isLogged) {
@@ -31,6 +33,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const navigate = useNavigate();
   const signIn = async (username: string, password: string) => {
+    setLoading(true);
     try {
       const response: AxiosResponse = await client.post("/login", {
         username,
@@ -51,6 +54,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (error: any) {
       toast.error("USUÁRIO / SENHA INCORRETOS!");
     }
+    setLoading(false);
   };
 
   const signOut = () => {
@@ -61,7 +65,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ logged, signIn, signOut }}>
+    <AuthContext.Provider value={{ logged, loading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

@@ -10,12 +10,12 @@ import {
   ImageLogo,
   Logo,
 } from "./styles";
-import { InputAdornment, Paper } from "@mui/material";
+import { CircularProgress, InputAdornment, Paper } from "@mui/material";
 import { useAuth } from "../../contexts/auth";
 import { useState } from "react";
 
 const LoginPage: React.FC = () => {
-  const { signIn } = useAuth();
+  const { signIn, loading } = useAuth();
 
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -78,7 +78,13 @@ const LoginPage: React.FC = () => {
           onClick={() => signIn(username, password)}
           color="primary"
           variant="contained"
-          startIcon={<LoginIcon />}
+          startIcon={
+            loading ? (
+              <CircularProgress size={20} color="inherit" />
+            ) : (
+              <LoginIcon />
+            )
+          }
         >
           Acessar
         </Button>

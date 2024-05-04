@@ -43,7 +43,13 @@ export const Exit = styled.button`
   color: #fff;
 `;
 
-export const Hour = styled.p`
+export const HourView = styled.p`
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+`;
+
+
+export const DateView = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 12px;
 `;

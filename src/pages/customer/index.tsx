@@ -162,7 +162,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <BadgeOutlined />
+                    <BadgeOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -185,7 +185,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <ArticleOutlined />
+                    <ArticleOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -209,7 +209,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <WcOutlined />
+                    <WcOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -239,7 +239,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LocalPhoneOutlined />
+                    <LocalPhoneOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -262,7 +262,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <AlternateEmailOutlined />
+                    <AlternateEmailOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -282,7 +282,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 endAdornment: (
                   <InputAdornment position="end">
-                    <Search />
+                    <Search fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -309,7 +309,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <EditRoadOutlined />
+                    <EditRoadOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -332,7 +332,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <EditLocationAltOutlined />
+                    <EditLocationAltOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -355,7 +355,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LocationCityOutlined />
+                    <LocationCityOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -378,7 +378,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <MapOutlined />
+                    <MapOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -401,7 +401,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <HomeWorkOutlined />
+                    <HomeWorkOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -424,7 +424,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <NumbersOutlined />
+                    <NumbersOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -446,7 +446,7 @@ const Customer: React.FC = () => {
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
                 startAdornment: (
                   <InputAdornment position="start">
-                    <PublicOutlined />
+                    <PublicOutlined fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
