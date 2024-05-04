@@ -7,6 +7,7 @@ import client from "../../services/axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Search from "../../components/Search";
+import { AxiosResponse } from "axios";
 
 const List: React.FC = () => {
   const columns = [
@@ -56,8 +57,9 @@ const List: React.FC = () => {
 
   const getCustomers = async () => {
     try {
-      const response = await client.get("/clients");
+      const response: AxiosResponse = await client.get("/clients");
       setCustomers(response.data);
+      console.log(response.data);
     } catch (err: any) {
       toast.error("Erro ao carregar clientes!" + err.message);
     }

@@ -140,7 +140,7 @@ export default function DrawerMenu({ children }: any) {
       const year = String(now.getFullYear());
       setTime(`${hours}:${minutes}:${seconds}`);
       setDate(`${day}/${month}/${year}`);
-    }, 1000);
+    });
 
     return () => clearInterval(interval);
   }, []);

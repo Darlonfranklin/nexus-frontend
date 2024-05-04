@@ -26,7 +26,6 @@ const LoginPage: React.FC = () => {
         <Logo>
           <ImageLogo src="/nexus.png" />
         </Logo>
-
         <GridContent>
           <Input
             size="small"
