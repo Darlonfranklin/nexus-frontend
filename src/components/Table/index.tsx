@@ -19,7 +19,6 @@ import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Button } from "./styles";
 import { useNavigate } from "react-router-dom";
-import Modal from "../Dialog";
 
 interface Column {
   field: string;
@@ -196,7 +195,6 @@ const TableList: React.FC<TableProps> = ({
                         <ModeEditOutlineIcon
                           style={{ width: 20 }}
                           color="inherit"
-                          onClick={() => <Modal />}
                         />
                       </Button>
                       <Button variant="contained" color="error">

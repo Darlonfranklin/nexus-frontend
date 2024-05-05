@@ -1,6 +1,6 @@
 import {
   BoxContainer,
-  Container,
+  ContainerEdit,
   GridContainer,
   GridContent,
   Title,
@@ -138,7 +138,7 @@ const CustomerEdit: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <ContainerEdit maxWidth="xl">
       <Title>EDITAR CLIENTE</Title>
       <BoxContainer>
         <GridContainer container spacing={1}>
@@ -415,7 +415,7 @@ const CustomerEdit: React.FC = () => {
           </Button>
         </GridContainer>
       </BoxContainer>
-    </Container>
+    </ContainerEdit>
   );
 };
 

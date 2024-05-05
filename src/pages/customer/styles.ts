@@ -5,7 +5,15 @@ export const BoxContainer = styled(Box)``;
 
 export const GridContainer = styled(Grid)``;
 
-export const Container = styled(ContainerUi)``;
+export const ContainerList = styled(ContainerUi)`
+max-width: 300vh !important;
+
+`;
+
+
+export const ContainerForm = styled(ContainerUi)``;
+
+export const ContainerEdit = styled(ContainerUi)``;
 
 export const Title = styled.h3`
   margin-bottom: 30px;

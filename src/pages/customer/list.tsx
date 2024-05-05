@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container, Title } from "./styles";
+import { ContainerList, Title } from "./styles";
 import TableList from "../../components/Table";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -70,7 +70,7 @@ const List: React.FC = () => {
   }, []);
 
   return (
-    <Container style={{ maxWidth: "300vh" }}>
+    <ContainerList>
       <Title>
         <ArrowBack
           onClick={() => navigate("/cadastros/cliente")}
@@ -95,7 +95,7 @@ const List: React.FC = () => {
         onClick={() => navigate("/cadastros/cliente/editar")}
         rows={filterText ? filteredRows : customers}
       />
-    </Container>
+    </ContainerList>
   );
 };
 

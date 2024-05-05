@@ -1,6 +1,6 @@
 import {
   BoxContainer,
-  Container,
+  ContainerForm,
   GridContainer,
   GridContent,
   Title,
@@ -143,7 +143,7 @@ const Customer: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="xl">
+    <ContainerForm maxWidth="xl">
       <Title>CADASTRAR CLIENTE</Title>
       <BoxContainer>
         <GridContainer container spacing={1}>
@@ -155,7 +155,6 @@ const Customer: React.FC = () => {
               type="text"
               onChange={(e: any) => setName(e.target.value.toUpperCase())}
               value={name}
-              error={name === ""}
               fullWidth
               InputLabelProps={{
                 style: { fontSize: "0.9rem" },
@@ -176,7 +175,6 @@ const Customer: React.FC = () => {
               label="CPF"
               name="cpf"
               type="text"
-              error={cpf === ""}
               onChange={handleCpfChange}
               value={cpf}
               fullWidth
@@ -200,7 +198,6 @@ const Customer: React.FC = () => {
               label="Sexo"
               name="sexo"
               type="text"
-              error={sex === ""}
               value={sex}
               onChange={(e: any) => setSex(e.target.value)}
               fullWidth
@@ -230,7 +227,6 @@ const Customer: React.FC = () => {
               label="Telefone"
               name="phone"
               type="text"
-              error={phone === ""}
               value={phone}
               onChange={handlePhoneChange}
               fullWidth
@@ -253,7 +249,6 @@ const Customer: React.FC = () => {
               label="E-mail"
               name="email"
               type="text"
-              error={email === ""}
               onChange={(e: any) => setEmail(e.target.value.toUpperCase())}
               value={email}
               fullWidth
@@ -277,7 +272,6 @@ const Customer: React.FC = () => {
               name="cep"
               type="text"
               value={cep}
-              error={cep === ""}
               onBlur={(e: any) => checkCEP(e)}
               onChange={(event: any) => handleCepChange(event)}
               InputProps={{
@@ -301,7 +295,6 @@ const Customer: React.FC = () => {
               name="streetName"
               type="text"
               value={streetName}
-              error={streetName === ""}
               fullWidth
               disabled={true}
               InputLabelProps={{
@@ -324,7 +317,6 @@ const Customer: React.FC = () => {
               name="neighborhood"
               type="text"
               value={neighborhood}
-              error={neighborhood === ""}
               disabled={true}
               fullWidth
               InputLabelProps={{
@@ -347,7 +339,6 @@ const Customer: React.FC = () => {
               name="locality"
               type="text"
               value={locality}
-              error={locality === ""}
               disabled={true}
               fullWidth
               InputLabelProps={{
@@ -371,7 +362,6 @@ const Customer: React.FC = () => {
               type="text"
               value={uf}
               disabled={true}
-              error={uf === ""}
               fullWidth
               InputLabelProps={{
                 style: { fontSize: "0.9rem" },
@@ -392,7 +382,6 @@ const Customer: React.FC = () => {
               label="Complemento"
               name="complement"
               type="text"
-              error={complement === ""}
               onChange={(e: any) => setComplement(e.target.value.toUpperCase())}
               value={complement}
               fullWidth
@@ -417,7 +406,6 @@ const Customer: React.FC = () => {
               type="text"
               onChange={(e: any) => setNumber(e.target.value)}
               value={number}
-              error={number === ""}
               fullWidth
               InputLabelProps={{
                 style: { fontSize: "0.9rem" },
@@ -481,7 +469,7 @@ const Customer: React.FC = () => {
           </Button>
         </GridContainer>
       </BoxContainer>
-    </Container>
+    </ContainerForm>
   );
 };
 

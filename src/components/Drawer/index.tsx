@@ -163,7 +163,12 @@ export default function DrawerMenu({ children }: any) {
             <MenuIcon />
           </IconButton>
           <Title>NEXUS</Title>
-          <Modal handleClose={signOut} open={openModal} cancel={handleClose} />
+          <Modal
+            text={"Deseja realmente sair do sistema ?"}
+            handleClose={signOut}
+            open={openModal}
+            cancel={handleClose}
+          />
           <QueryBuilder style={{ marginRight: "5px", fontSize: 18 }} />
           <HourView>Hora: {time}</HourView>
           <Separator>|</Separator>
