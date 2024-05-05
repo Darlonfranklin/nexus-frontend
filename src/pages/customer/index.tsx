@@ -31,7 +31,7 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-import { InputAdornment, MenuItem } from "@mui/material";
+import { InputAdornment, MenuItem, Paper } from "@mui/material";
 import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
 
@@ -144,8 +144,8 @@ const Customer: React.FC = () => {
 
   return (
     <ContainerForm maxWidth="xl">
-      <Title>CADASTRAR CLIENTE</Title>
-      <BoxContainer>
+      <BoxContainer component={Paper}>
+        <Title>CADASTRAR CLIENTE</Title>
         <GridContainer container spacing={1}>
           <GridContent item xs={12} sm={4}>
             <Input

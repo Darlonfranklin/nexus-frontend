@@ -152,7 +152,6 @@ const CustomerEdit: React.FC = () => {
                 setName(e.target.value)
               }
               value={name}
-              error={name === ""}
               fullWidth
               InputLabelProps={{
                 style: { fontSize: "0.9rem" },
@@ -168,7 +167,6 @@ const CustomerEdit: React.FC = () => {
               label="CPF"
               name="cpf"
               type="text"
-              error={cpf === ""}
               onChange={handleCpfChange}
               value={cpf}
               fullWidth
@@ -187,7 +185,6 @@ const CustomerEdit: React.FC = () => {
               label="Sexo"
               name="sexo"
               type="text"
-              error={sex === ""}
               value={sex}
               onChange={(e: any) => setSex(e.target.value)}
               fullWidth
@@ -209,7 +206,6 @@ const CustomerEdit: React.FC = () => {
               label="Telefone"
               name="phone"
               type="text"
-              error={phone === ""}
               value={phone}
               onChange={handlePhoneChange}
               fullWidth
@@ -227,7 +223,6 @@ const CustomerEdit: React.FC = () => {
               label="E-mail"
               name="email"
               type="text"
-              error={email === ""}
               onChange={(e: any) => setEmail(e.target.value)}
               value={email}
               fullWidth
@@ -246,7 +241,6 @@ const CustomerEdit: React.FC = () => {
               name="cep"
               type="text"
               value={cep}
-              error={cep === ""}
               onBlur={(e: any) => checkCEP(e)}
               onChange={(event: any) => handleCepChange(event)}
               InputProps={{
@@ -270,7 +264,6 @@ const CustomerEdit: React.FC = () => {
               name="streetName"
               type="text"
               value={streetName}
-              error={streetName === ""}
               fullWidth
               disabled={true}
               InputLabelProps={{
@@ -288,7 +281,6 @@ const CustomerEdit: React.FC = () => {
               name="neighborhood"
               type="text"
               value={neighborhood}
-              error={neighborhood === ""}
               disabled={true}
               fullWidth
               InputLabelProps={{
@@ -306,7 +298,6 @@ const CustomerEdit: React.FC = () => {
               name="locality"
               type="text"
               value={locality}
-              error={locality === ""}
               disabled={true}
               fullWidth
               InputLabelProps={{
@@ -325,7 +316,6 @@ const CustomerEdit: React.FC = () => {
               type="text"
               value={uf}
               disabled={true}
-              error={uf === ""}
               fullWidth
               InputLabelProps={{
                 style: { fontSize: "0.9rem" },
@@ -341,7 +331,6 @@ const CustomerEdit: React.FC = () => {
               label="Complemento"
               name="complement"
               type="text"
-              error={complement === ""}
               onChange={(e: any) => setComplement(e.target.value)}
               value={complement}
               fullWidth
@@ -361,7 +350,6 @@ const CustomerEdit: React.FC = () => {
               type="text"
               onChange={(e: any) => setNumber(e.target.value)}
               value={number}
-              error={number === ""}
               fullWidth
               InputLabelProps={{
                 style: { fontSize: "0.9rem" },

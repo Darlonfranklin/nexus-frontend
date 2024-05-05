@@ -1,7 +1,9 @@
 import { Box, Container as ContainerUi, Grid } from "@mui/material";
 import styled from "styled-components";
 
-export const BoxContainer = styled(Box)``;
+export const BoxContainer = styled(Box)`
+  padding: 50px;
+`;
 
 export const GridContainer = styled(Grid)``;
 
