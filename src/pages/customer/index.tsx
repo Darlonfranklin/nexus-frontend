@@ -48,9 +48,9 @@ const Customer: React.FC = () => {
   const [uf, setUf] = useState<string>("");
   const [complement, setComplement] = useState<string>("");
   const [number, setNumber] = useState<string>("");
-  const [country, _setCountry] = useState<string>("Brasil");
+  const [country, _setCountry] = useState<string>("BRASIL");
 
-  const selectComboSexo = ["Não informado", "Masculino", "Feminino"];
+  const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
 
   let data = {
     name: name,
@@ -100,16 +100,18 @@ const Customer: React.FC = () => {
   const navigate = useNavigate();
 
   const checkCEP = async (e: any) => {
-    const ceep = e.target.value;
+    const numberCep = e.target.value;
 
     try {
-      const result = await client.get(`https://viacep.com.br/ws/${ceep}/json/`);
+      const result = await client.get(
+        `https://viacep.com.br/ws/${numberCep}/json/`
+      );
       const { cep, logradouro, bairro, localidade, uf } = result.data;
       setCep(cep);
-      setStreetName(logradouro);
-      setNeighborhood(bairro);
-      setLocality(localidade);
-      setUf(uf);
+      setStreetName(logradouro.toUpperCase());
+      setNeighborhood(bairro.toUpperCase());
+      setLocality(localidade.toUpperCase());
+      setUf(uf.toUpperCase());
     } catch (error: any) {
       console.error(error);
     }
@@ -151,7 +153,7 @@ const Customer: React.FC = () => {
               label="Nome"
               name="name"
               type="text"
-              onChange={(e: any) => setName(e.target.value)}
+              onChange={(e: any) => setName(e.target.value.toUpperCase())}
               value={name}
               error={name === ""}
               fullWidth
@@ -252,7 +254,7 @@ const Customer: React.FC = () => {
               name="email"
               type="text"
               error={email === ""}
-              onChange={(e: any) => setEmail(e.target.value)}
+              onChange={(e: any) => setEmail(e.target.value.toUpperCase())}
               value={email}
               fullWidth
               InputLabelProps={{
@@ -391,7 +393,7 @@ const Customer: React.FC = () => {
               name="complement"
               type="text"
               error={complement === ""}
-              onChange={(e: any) => setComplement(e.target.value)}
+              onChange={(e: any) => setComplement(e.target.value.toUpperCase())}
               value={complement}
               fullWidth
               InputLabelProps={{
