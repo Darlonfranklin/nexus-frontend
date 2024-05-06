@@ -19,13 +19,13 @@ export const Logo = styled.div`
 `;
 
 export const ImageP = styled.img<IImg>`
-  height: ${(props) => (props.open ? "0px" : "90px")};
-  width: ${(props) => (props.open ? "0px" : "250px")};
+  height: ${(props) => (props.open ? "" : "")};
+  width: ${(props) => (props.open ? "" : "")};
   margin-left: 16px;
 `;
 
 export const ImageL = styled.img<IImg>`
-  height: ${(props) => (props.open ? null : "40px")};
+  height: ${(props) => (props.open ? null : "46px")};
   width: ${(props) => (props.open ? null : "35px")};
   margin-top: ${(props) => (props.open ? null : "16px")};
   margin-left: ${(props) => (props.open ? null : "15px")};

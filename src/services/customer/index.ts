@@ -26,8 +26,7 @@ export const useCustomerService = () => {
         }
     }
 
-
-    const update = async (customerId: any, newData: any): Promise<any | undefined> => {
+    const update = async (customerId: any, newData: any): Promise<ICustomer | undefined> => {
         try {
             const response: AxiosResponse<ICustomer> = await client.put<ICustomer>(`/clients/${customerId}`, newData);
             console.log("Dados do cliente atualizados:", response.data);

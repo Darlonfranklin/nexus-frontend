@@ -276,8 +276,8 @@ const Customer: React.FC = () => {
               onChange={(event: any) => handleCepChange(event)}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
-                endAdornment: (
-                  <InputAdornment position="end">
+                startAdornment: (
+                  <InputAdornment position="start">
                     <Search fontSize={"small"} />
                   </InputAdornment>
                 ),

@@ -123,7 +123,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 const TableList: React.FC<TableProps> = ({
   columns,
   rows,
-  rowsPerPageOptions = [5, 10, 25, { label: "All", value: -1 }],
+  rowsPerPageOptions = [7, 10, 25, { label: "All", value: -1 }],
   onPageChange,
   onRowsPerPageChange,
 }) => {
@@ -172,7 +172,12 @@ const TableList: React.FC<TableProps> = ({
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row, rowIndex) => (
-            <TableRow key={rowIndex}>
+            <TableRow
+              key={rowIndex}
+              style={{
+                backgroundColor: rowIndex % 2 === 0 ? "#f2f2f2" : "white",
+              }}
+            >
               {columns.map((column, colIndex) => (
                 <TableCell
                   key={colIndex}

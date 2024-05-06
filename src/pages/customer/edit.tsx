@@ -16,10 +16,22 @@ import {
   CheckOutlined,
   Search,
   AddCircleOutline,
+  BadgeOutlined,
+  ArticleOutlined,
+  WcOutlined,
+  LocalPhoneOutlined,
+  AlternateEmailOutlined,
+  EditRoadOutlined,
+  EditLocationAltOutlined,
+  LocationCityOutlined,
+  MapOutlined,
+  HomeWorkOutlined,
+  NumbersOutlined,
+  PublicOutlined,
 } from "@mui/icons-material";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { InputAdornment, MenuItem } from "@mui/material";
+import { InputAdornment, MenuItem, Paper } from "@mui/material";
 import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
 import { ICustomer } from "../../models/customer";
@@ -37,7 +49,11 @@ const CustomerEdit: React.FC = () => {
   const [uf, setUf] = useState<string>("");
   const [complement, setComplement] = useState<string>("");
   const [number, setNumber] = useState<string>("");
-  const [country, _setCountry] = useState<string>("Brasil");
+  const [country, _setCountry] = useState<string>("BRASIL");
+
+  const { id } = useParams();
+
+  const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
 
   const validation: boolean =
     !name ||
@@ -101,21 +117,19 @@ const CustomerEdit: React.FC = () => {
   }, []);
 
   const setClientData = (customer: ICustomer) => {
-    setName(customer.name);
+    setName(customer.name.toUpperCase());
     setCpf(customer.cpf);
     setSex(customer.sex);
     setPhone(customer.phone);
-    setEmail(customer.email);
+    setEmail(customer.email.toUpperCase());
     setCep(customer.cep);
-    setStreetName(customer.streetName);
-    setNeighborhood(customer.neighborhood);
-    setLocality(customer.locality);
-    setUf(customer.uf);
-    setComplement(customer.complement);
-    setNumber(customer.number);
+    setStreetName(customer.streetName.toUpperCase());
+    setNeighborhood(customer.neighborhood.toUpperCase());
+    setLocality(customer.locality.toUpperCase());
+    setUf(customer.uf.toUpperCase());
+    setComplement(customer.complement.toUpperCase());
+    setNumber(customer.number.toUpperCase());
   };
-
-  const { id } = useParams();
 
   const { update } = useCustomerService();
 
@@ -139,8 +153,8 @@ const CustomerEdit: React.FC = () => {
 
   return (
     <ContainerEdit maxWidth="xl">
-      <Title>EDITAR CLIENTE</Title>
-      <BoxContainer>
+      <BoxContainer component={Paper}>
+        <Title>EDITAR CLIENTE</Title>
         <GridContainer container spacing={1}>
           <GridContent item xs={12} sm={4}>
             <Input
@@ -148,9 +162,7 @@ const CustomerEdit: React.FC = () => {
               label="Nome"
               name="name"
               type="text"
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setName(e.target.value)
-              }
+              onChange={(e: any) => setName(e.target.value.toUpperCase())}
               value={name}
               fullWidth
               InputLabelProps={{
@@ -158,6 +170,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <BadgeOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -175,6 +192,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <ArticleOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -193,10 +215,18 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <WcOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             >
-              <MenuItem value="masculino">Masculino</MenuItem>
-              <MenuItem value="feminino">Feminino</MenuItem>
+              {selectComboSexo.map((item, index) => (
+                <MenuItem key={index} value={item}>
+                  {item}
+                </MenuItem>
+              ))}
             </Input>
           </GridContent>
 
@@ -214,6 +244,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalPhoneOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -223,7 +258,7 @@ const CustomerEdit: React.FC = () => {
               label="E-mail"
               name="email"
               type="text"
-              onChange={(e: any) => setEmail(e.target.value)}
+              onChange={(e: any) => setEmail(e.target.value.toUpperCase())}
               value={email}
               fullWidth
               InputLabelProps={{
@@ -231,6 +266,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AlternateEmailOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -245,9 +285,9 @@ const CustomerEdit: React.FC = () => {
               onChange={(event: any) => handleCepChange(event)}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Search />
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search fontSize={"small"} />
                   </InputAdornment>
                 ),
               }}
@@ -271,6 +311,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EditRoadOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -288,6 +333,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EditLocationAltOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -305,6 +355,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocationCityOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -322,6 +377,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MapOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -331,7 +391,7 @@ const CustomerEdit: React.FC = () => {
               label="Complemento"
               name="complement"
               type="text"
-              onChange={(e: any) => setComplement(e.target.value)}
+              onChange={(e: any) => setComplement(e.target.value.toUpperCase())}
               value={complement}
               fullWidth
               InputLabelProps={{
@@ -339,6 +399,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <HomeWorkOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -356,6 +421,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <NumbersOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
@@ -373,6 +443,11 @@ const CustomerEdit: React.FC = () => {
               }}
               InputProps={{
                 style: { fontSize: "0.9rem", borderRadius: "1px" },
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PublicOutlined fontSize={"small"} />
+                  </InputAdornment>
+                ),
               }}
             />
           </GridContent>
