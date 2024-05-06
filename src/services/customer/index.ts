@@ -9,12 +9,6 @@ export const useCustomerService = () => {
     const navigate = useNavigate();
 
     const save = async (customer: ICustomer): Promise<ICustomer | undefined> => {
-        const token = localStorage.getItem("@nexus.application:token");
-        if (!token) {
-            toast.error("Você precisa estar logado para acessar os clientes!");
-            return;
-        }
-
         try {
             const response: AxiosResponse<ICustomer> = await client.post<ICustomer>("/clients", customer);
             toast.success("Salvo com sucesso!!!");

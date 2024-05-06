@@ -169,7 +169,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <BadgeOutlined fontSize={"small"} />
@@ -191,7 +195,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <ArticleOutlined fontSize={"small"} />
@@ -214,7 +222,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <WcOutlined fontSize={"small"} />
@@ -243,7 +255,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <LocalPhoneOutlined fontSize={"small"} />
@@ -265,7 +281,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <AlternateEmailOutlined fontSize={"small"} />
@@ -284,7 +304,11 @@ const CustomerEdit: React.FC = () => {
               onBlur={(e: any) => checkCEP(e)}
               onChange={(event: any) => handleCepChange(event)}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <Search fontSize={"small"} />
@@ -310,7 +334,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <EditRoadOutlined fontSize={"small"} />
@@ -332,7 +360,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <EditLocationAltOutlined fontSize={"small"} />
@@ -354,7 +386,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <LocationCityOutlined fontSize={"small"} />
@@ -376,7 +412,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <MapOutlined fontSize={"small"} />
@@ -398,7 +438,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <HomeWorkOutlined fontSize={"small"} />
@@ -420,7 +464,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <NumbersOutlined fontSize={"small"} />
@@ -442,7 +490,11 @@ const CustomerEdit: React.FC = () => {
                 style: { fontSize: "0.9rem" },
               }}
               InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
+                style: {
+                  fontSize: "0.9rem",
+                  borderRadius: "1px",
+                  backgroundColor: id ? "#f3ffb9" : null,
+                },
                 startAdornment: (
                   <InputAdornment position="start">
                     <PublicOutlined fontSize={"small"} />
