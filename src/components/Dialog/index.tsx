@@ -1,7 +1,7 @@
 import * as React from "react";
-import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import {
   ActionsModal,
+  Attention,
   ContainerModal,
   ContentModal,
   TextModal,
@@ -23,10 +23,7 @@ const Modal: React.FC<IModal> = ({ open, handleClose, cancel, text }) => {
       <ContainerModal open={open}>
         <TitleModal>
           {"Atenção"}
-          <ReportProblemIcon
-            fontSize={"inherit"}
-            style={{ color: "#FFFF00", marginLeft: "5px" }}
-          />
+          <Attention />
         </TitleModal>
         <ContentModal>
           <TextModal>{text}</TextModal>

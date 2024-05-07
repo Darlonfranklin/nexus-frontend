@@ -4,9 +4,11 @@ import client from "../axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+
 export const useCustomerService = () => {
 
     const navigate = useNavigate();
+
 
     const save = async (customer: ICustomer): Promise<ICustomer | undefined> => {
         try {
@@ -19,16 +21,13 @@ export const useCustomerService = () => {
             navigate("/cadastros/cliente");
         }
     }
-
-    const update = async (customerId: any, newData: any): Promise<ICustomer | undefined> => {
+    const update = async (customerId: string, newData: ICustomer): Promise<ICustomer | undefined> => {
         try {
             const response: AxiosResponse<ICustomer> = await client.put<ICustomer>(`/clients/${customerId}`, newData);
-            console.log("Dados do cliente atualizados:", response.data);
             toast.success("Dados do cliente atualizados com sucesso!!!");
             navigate("listar");
             return response.data;
         } catch (error) {
-            console.error("Erro ao atualizar os dados do cliente:", error);
             toast.error("Erro ao atualizar os dados do cliente!!!");
             throw error;
         }

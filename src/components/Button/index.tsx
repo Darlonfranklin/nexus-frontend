@@ -1,13 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode, MouseEvent } from "react";
 import { ButtonUI } from "./styles";
 
 interface IButton {
   variant: "text" | "outlined" | "contained";
   children?: ReactNode;
-  onClick?: any;
-  startIcon?: any;
-  disabled?: any;
-  onSubmit?: any;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  startIcon?: ReactNode;
+  disabled?: boolean;
   color?:
     | "inherit"
     | "primary"
@@ -15,8 +14,9 @@ interface IButton {
     | "success"
     | "error"
     | "info"
-    | "warning";
-  style?: Object;
+    | "warning"
+    | undefined;
+  style?: React.CSSProperties;
 }
 
 const Button: React.FC<IButton> = ({
@@ -26,7 +26,6 @@ const Button: React.FC<IButton> = ({
   color,
   startIcon,
   onClick,
-  onSubmit,
   disabled,
 }) => {
   return (
@@ -36,7 +35,6 @@ const Button: React.FC<IButton> = ({
       color={color}
       startIcon={startIcon}
       onClick={onClick}
-      onSubmit={onSubmit}
       disabled={disabled}
     >
       {children}

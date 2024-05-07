@@ -35,6 +35,7 @@ import { InputAdornment, MenuItem, Paper } from "@mui/material";
 import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
 import { ICustomer } from "../../models/customer";
+import { AxiosResponse } from "axios";
 
 const CustomerEdit: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -54,6 +55,22 @@ const CustomerEdit: React.FC = () => {
   const { id } = useParams();
 
   const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
+
+  const data = {
+    name: name,
+    cpf: cpf,
+    phone: phone,
+    email: email,
+    cep: cep,
+    sex: sex,
+    streetName: streetName,
+    neighborhood: neighborhood,
+    locality: locality,
+    uf: uf,
+    complement: complement,
+    number: number,
+    country: country,
+  };
 
   const validation: boolean =
     !name ||
@@ -86,6 +103,12 @@ const CustomerEdit: React.FC = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (id === undefined) {
+      navigate("/dashboard");
+    }
+  }, [id, navigate]);
+
   const checkCEP = async (e: any) => {
     const ceep = e.target.value;
 
@@ -105,7 +128,7 @@ const CustomerEdit: React.FC = () => {
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
-        const response = await client.get(`/clients/${id}`);
+        const response: AxiosResponse = await client.get(`/clients/${id}`);
         console.log("Dados do cliente recebidos:", response.data);
         setClientData(response.data);
       } catch (error) {
@@ -132,6 +155,11 @@ const CustomerEdit: React.FC = () => {
   };
 
   const { update } = useCustomerService();
+
+  const handleSubmit = async (id: string | undefined, data: ICustomer) => {
+    const customerId: string = id ?? "";
+    await update(customerId, data);
+  };
 
   const handleCepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value.replace(/[^\d]/g, "");
@@ -172,7 +200,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -198,7 +226,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -225,7 +253,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -258,7 +286,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -284,7 +312,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -307,7 +335,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -337,7 +365,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -363,7 +391,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -389,7 +417,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -415,7 +443,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -441,7 +469,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -467,7 +495,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -493,7 +521,7 @@ const CustomerEdit: React.FC = () => {
                 style: {
                   fontSize: "0.9rem",
                   borderRadius: "1px",
-                  backgroundColor: id ? "#f3ffb9" : null,
+                  backgroundColor: id ? "#f3ffb9" : "",
                 },
                 startAdornment: (
                   <InputAdornment position="start">
@@ -505,7 +533,7 @@ const CustomerEdit: React.FC = () => {
           </GridContent>
           <Button
             disabled={validation}
-            onClick={update}
+            onClick={() => handleSubmit(id, data)}
             color="primary"
             variant="contained"
             startIcon={<CheckOutlined />}

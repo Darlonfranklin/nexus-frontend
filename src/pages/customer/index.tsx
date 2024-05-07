@@ -119,7 +119,7 @@ const Customer: React.FC = () => {
 
   const { save } = useCustomerService();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     await save(data);
   };

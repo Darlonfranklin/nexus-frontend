@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+
 import {
   Dialog,
   DialogActions,
@@ -23,3 +25,10 @@ export const ContentModal = styled(DialogContent)`
 export const TextModal = styled(DialogContentText)``;
 
 export const ActionsModal = styled(DialogActions)``;
+
+export const Attention = styled(ReportProblemIcon)`
+  
+            color: #FFFF00;
+             margin-left: 5px;
+
+`;

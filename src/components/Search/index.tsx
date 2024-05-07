@@ -3,8 +3,8 @@ import { Fragment } from "react/jsx-runtime";
 import { Search as SearchUI } from "@mui/icons-material";
 
 interface ISearch {
-  value?: any;
-  onChange?: any;
+  value?: string | number | boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Search: React.FC<ISearch> = ({ value, onChange }) => {

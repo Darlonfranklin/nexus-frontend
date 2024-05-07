@@ -1,27 +1,27 @@
-import { TextField } from "@mui/material";
+import { InputLabelProps, InputProps, TextField } from "@mui/material";
 
 interface IInput {
   label?: string;
   type: string;
   placeholder?: string;
-  value: any;
-  InputProps?: any;
-  onChange?: any;
+  value: string | number | boolean;
+  InputProps?: InputProps;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   maxLength?: any;
-  InputLabelProps?: Object;
-  size?: any;
+  InputLabelProps?: InputLabelProps;
+  size?: "small" | "medium" | "large" | any;
   name: string;
   select?: boolean;
   defaultValue?: string;
   autoFocus?: boolean;
-  onBlur?: any;
-  ref?: any;
-  error?: any;
-  helperText?: any;
-  fullWidth?: any;
-  children?: any;
-  disabled?: any;
-  style?: any;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  ref?: React.Ref<any>;
+  error?: boolean;
+  helperText?: string;
+  fullWidth?: boolean;
+  children?: React.ReactNode;
+  disabled?: boolean;
+  style?: React.CSSProperties;
 }
 
 const Input: React.FC<IInput> = ({

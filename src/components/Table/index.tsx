@@ -123,7 +123,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 const TableList: React.FC<TableProps> = ({
   columns,
   rows,
-  rowsPerPageOptions = [7, 10, 25, { label: "All", value: -1 }],
+  rowsPerPageOptions = [5, 10, 25, { label: "All", value: -1 }],
   onPageChange,
   onRowsPerPageChange,
 }) => {
@@ -198,13 +198,13 @@ const TableList: React.FC<TableProps> = ({
                         onClick={() => onEditButtonClick(row)}
                       >
                         <ModeEditOutlineIcon
-                          style={{ width: 20 }}
+                          style={{ width: 15 }}
                           color="inherit"
                         />
                       </Button>
                       <Button variant="contained" color="error">
                         <DeleteOutlineIcon
-                          style={{ width: 20 }}
+                          style={{ width: 15 }}
                           color="inherit"
                         />
                       </Button>
