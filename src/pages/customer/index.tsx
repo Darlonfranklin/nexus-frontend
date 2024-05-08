@@ -1,6 +1,7 @@
 import {
   BoxContainer,
   ContainerForm,
+  Form,
   GridContainer,
   GridContent,
   Title,
@@ -82,7 +83,7 @@ const Customer: React.FC = () => {
     !complement ||
     !number;
 
-  const clear = (): void => {
+  const handleClear = (): void => {
     setName("");
     setCpf("");
     setPhone("");
@@ -119,7 +120,7 @@ const Customer: React.FC = () => {
 
   const { save } = useCustomerService();
 
-  const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     await save(data);
   };
@@ -146,328 +147,342 @@ const Customer: React.FC = () => {
     <ContainerForm maxWidth="xl">
       <BoxContainer component={Paper}>
         <Title>CADASTRAR CLIENTE</Title>
-        <GridContainer container spacing={1}>
-          <GridContent item xs={12} sm={4}>
-            <Input
-              size="small"
-              label="Nome"
-              name="name"
-              type="text"
-              onChange={(e: any) => setName(e.target.value.toUpperCase())}
-              value={name}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <BadgeOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={2}>
-            <Input
-              size="small"
-              label="CPF"
-              name="cpf"
-              type="text"
-              onChange={handleCpfChange}
-              value={cpf}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <ArticleOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={3}>
-            <Input
-              select
-              size="small"
-              label="Sexo"
-              name="sexo"
-              type="text"
-              value={sex}
-              onChange={(e: any) => setSex(e.target.value)}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <WcOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            >
-              {selectComboSexo.map((item, index) => (
-                <MenuItem key={index} value={item}>
-                  {item}
-                </MenuItem>
-              ))}
-            </Input>
-          </GridContent>
+        <Form component="form" onSubmit={handleSubmit} onReset={handleClear}>
+          <GridContainer container spacing={1}>
+            <GridContent item xs={12} sm={4}>
+              <Input
+                autoFocus
+                size="small"
+                label="Nome*"
+                name="name"
+                type="text"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setName(e.target.value.toUpperCase())
+                }
+                value={name}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <BadgeOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={2}>
+              <Input
+                size="small"
+                label="CPF*"
+                name="cpf"
+                type="text"
+                onChange={handleCpfChange}
+                value={cpf}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <ArticleOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={3}>
+              <Input
+                select
+                size="small"
+                label="Sexo*"
+                name="sexo"
+                type="text"
+                value={sex}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSex(e.target.value)
+                }
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <WcOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              >
+                {selectComboSexo.map((item, index) => (
+                  <MenuItem key={index} value={item}>
+                    {item}
+                  </MenuItem>
+                ))}
+              </Input>
+            </GridContent>
 
-          <GridContent item xs={12} sm={3}>
-            <Input
-              size="small"
-              label="Telefone"
-              name="phone"
-              type="text"
-              value={phone}
-              onChange={handlePhoneChange}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LocalPhoneOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12}>
-            <Input
-              size="small"
-              label="E-mail"
-              name="email"
-              type="text"
-              onChange={(e: any) => setEmail(e.target.value.toUpperCase())}
-              value={email}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <AlternateEmailOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={3}>
-            <Input
-              size="small"
-              label="CEP"
-              name="cep"
-              type="text"
-              value={cep}
-              onBlur={(e: any) => checkCEP(e)}
-              onChange={(event: any) => handleCepChange(event)}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Search fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={6}>
-            <Input
-              size="small"
-              label="Rua"
-              name="streetName"
-              type="text"
-              value={streetName}
-              fullWidth
-              disabled={true}
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <EditRoadOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={3}>
-            <Input
-              size="small"
-              label="Bairro"
-              name="neighborhood"
-              type="text"
-              value={neighborhood}
-              disabled={true}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <EditLocationAltOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={3}>
-            <Input
-              size="small"
-              label="Cidade"
-              name="locality"
-              type="text"
-              value={locality}
-              disabled={true}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <LocationCityOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={2}>
-            <Input
-              size="small"
-              label="UF"
-              name="uf"
-              type="text"
-              value={uf}
-              disabled={true}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <MapOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={3}>
-            <Input
-              size="small"
-              label="Complemento"
-              name="complement"
-              type="text"
-              onChange={(e: any) => setComplement(e.target.value.toUpperCase())}
-              value={complement}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <HomeWorkOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={2}>
-            <Input
-              size="small"
-              label="Numero"
-              name="number"
-              type="text"
-              onChange={(e: any) => setNumber(e.target.value)}
-              value={number}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <NumbersOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <GridContent item xs={12} sm={2}>
-            <Input
-              size="small"
-              label="País"
-              name="country"
-              type="text"
-              disabled={true}
-              value={country}
-              fullWidth
-              InputLabelProps={{
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PublicOutlined fontSize={"small"} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <Button
-            disabled={validation}
-            onClick={handleSubmit}
-            color="primary"
-            variant="contained"
-            startIcon={<CheckOutlined />}
-          >
-            Salvar
-          </Button>
-          <Button
-            onClick={clear}
-            color="error"
-            variant="contained"
-            startIcon={<CancelOutlined />}
-          >
-            Cancelar
-          </Button>
-          <Button
-            color="success"
-            variant="contained"
-            startIcon={<VisibilityOutlined />}
-            onClick={() => navigate("listar")}
-          >
-            Vizualizar
-          </Button>
-        </GridContainer>
+            <GridContent item xs={12} sm={3}>
+              <Input
+                size="small"
+                label="Telefone*"
+                name="phone"
+                type="text"
+                value={phone}
+                onChange={handlePhoneChange}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LocalPhoneOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12}>
+              <Input
+                size="small"
+                label="E-mail*"
+                name="email"
+                type="text"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value.toUpperCase())
+                }
+                value={email}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AlternateEmailOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={3}>
+              <Input
+                size="small"
+                label="CEP*"
+                name="cep"
+                type="text"
+                value={cep}
+                onBlur={(e: React.ChangeEvent<HTMLInputElement>) => checkCEP(e)}
+                onChange={(event: any) => handleCepChange(event)}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Search fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={6}>
+              <Input
+                size="small"
+                label="Rua*"
+                name="streetName"
+                type="text"
+                value={streetName}
+                fullWidth
+                disabled={true}
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EditRoadOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={3}>
+              <Input
+                size="small"
+                label="Bairro*"
+                name="neighborhood"
+                type="text"
+                value={neighborhood}
+                disabled={true}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EditLocationAltOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={3}>
+              <Input
+                size="small"
+                label="Cidade*"
+                name="locality"
+                type="text"
+                value={locality}
+                disabled={true}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LocationCityOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={2}>
+              <Input
+                size="small"
+                label="UF*"
+                name="uf"
+                type="text"
+                value={uf}
+                disabled={true}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <MapOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={3}>
+              <Input
+                size="small"
+                label="Complemento*"
+                name="complement"
+                type="text"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setComplement(e.target.value.toUpperCase())
+                }
+                value={complement}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <HomeWorkOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={2}>
+              <Input
+                size="small"
+                label="Numero*"
+                name="number"
+                type="text"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setNumber(e.target.value)
+                }
+                value={number}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <NumbersOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <GridContent item xs={12} sm={2}>
+              <Input
+                size="small"
+                label="País*"
+                name="country"
+                type="text"
+                disabled={true}
+                value={country}
+                fullWidth
+                InputLabelProps={{
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PublicOutlined fontSize={"small"} />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+
+            <Button
+              disabled={validation}
+              color="primary"
+              variant="contained"
+              type="submit"
+              startIcon={<CheckOutlined />}
+            >
+              Salvar
+            </Button>
+            <Button
+              color="error"
+              type="reset"
+              variant="contained"
+              startIcon={<CancelOutlined />}
+            >
+              Cancelar
+            </Button>
+            <Button
+              color="success"
+              variant="contained"
+              startIcon={<VisibilityOutlined />}
+              onClick={() => navigate("listar")}
+            >
+              Vizualizar
+            </Button>
+          </GridContainer>
+        </Form>
       </BoxContainer>
     </ContainerForm>
   );

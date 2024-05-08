@@ -151,7 +151,7 @@ const TableList: React.FC<TableProps> = ({
   };
 
   return (
-    <TableContainer component={Paper} style={{ borderRadius: "1px" }}>
+    <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
@@ -182,7 +182,7 @@ const TableList: React.FC<TableProps> = ({
                 <TableCell
                   key={colIndex}
                   align={column.align || "left"}
-                  style={{ width: column.width }}
+                  style={{ width: column.width, fontSize: 11.5 }}
                 >
                   {column.field === "actions" ? (
                     <div

@@ -25,11 +25,11 @@ export const useCustomerService = () => {
         try {
             const response: AxiosResponse<ICustomer> = await client.put<ICustomer>(`/clients/${customerId}`, newData);
             toast.success("Dados do cliente atualizados com sucesso!!!");
-            navigate("listar");
+            navigate("/cadastros/cliente/listar");
             return response.data;
         } catch (error) {
             toast.error("Erro ao atualizar os dados do cliente!!!");
-            throw error;
+            navigate("/cadastros/editar");
         }
     };
 

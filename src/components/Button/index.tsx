@@ -7,6 +7,7 @@ interface IButton {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   startIcon?: ReactNode;
   disabled?: boolean;
+  type?: "submit" | "reset";
   color?:
     | "inherit"
     | "primary"
@@ -27,6 +28,7 @@ const Button: React.FC<IButton> = ({
   startIcon,
   onClick,
   disabled,
+  type,
 }) => {
   return (
     <ButtonUI
@@ -36,6 +38,7 @@ const Button: React.FC<IButton> = ({
       startIcon={startIcon}
       onClick={onClick}
       disabled={disabled}
+      type={type}
     >
       {children}
     </ButtonUI>

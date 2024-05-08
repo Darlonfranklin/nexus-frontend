@@ -18,7 +18,7 @@ export const ContainerForm = styled(ContainerUi)``;
 export const ContainerEdit = styled(ContainerUi)``;
 
 export const Title = styled.h3`
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   align-items: center;
   display: flex;
   color: gray;
@@ -27,3 +27,5 @@ export const Title = styled.h3`
 export const GridContent = styled(Grid)`
   margin-bottom: 30px !important;
 `;
+
+export const Form = styled(Box)``;
