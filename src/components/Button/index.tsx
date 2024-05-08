@@ -6,7 +6,7 @@ interface IButton {
   children?: ReactNode;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   startIcon?: ReactNode;
-  disabled?: boolean;
+  disabled?: boolean | any;
   type?: "submit" | "reset";
   color?:
     | "inherit"

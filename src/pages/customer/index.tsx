@@ -35,6 +35,7 @@ import { useNavigate } from "react-router-dom";
 import { InputAdornment, MenuItem, Paper } from "@mui/material";
 import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
+import Modal from "../../components/Dialog";
 
 const Customer: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -50,8 +51,30 @@ const Customer: React.FC = () => {
   const [complement, setComplement] = useState<string>("");
   const [number, setNumber] = useState<string>("");
   const [country, _setCountry] = useState<string>("BRASIL");
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
+
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+  const validationCancel =
+    !name &&
+    !cpf &&
+    !phone &&
+    !email &&
+    !cep &&
+    !sex &&
+    !streetName &&
+    !neighborhood &&
+    !locality &&
+    !uf &&
+    !complement &&
+    !number;
 
   let data = {
     name: name,
@@ -69,7 +92,7 @@ const Customer: React.FC = () => {
     country: country,
   };
 
-  let validation: boolean =
+  let validationSave: boolean =
     !name ||
     !cpf ||
     !phone ||
@@ -96,6 +119,7 @@ const Customer: React.FC = () => {
     setUf("");
     setComplement("");
     setNumber("");
+    handleClose();
   };
 
   const navigate = useNavigate();
@@ -147,7 +171,11 @@ const Customer: React.FC = () => {
     <ContainerForm maxWidth="xl">
       <BoxContainer component={Paper}>
         <Title>CADASTRAR CLIENTE</Title>
-        <Form component="form" onSubmit={handleSubmit} onReset={handleClear}>
+        <Form
+          component="form"
+          onSubmit={handleSubmit}
+          onReset={handleClickOpen}
+        >
           <GridContainer container spacing={1}>
             <GridContent item xs={12} sm={4}>
               <Input
@@ -457,7 +485,7 @@ const Customer: React.FC = () => {
             </GridContent>
 
             <Button
-              disabled={validation}
+              disabled={validationSave}
               color="primary"
               variant="contained"
               type="submit"
@@ -468,6 +496,7 @@ const Customer: React.FC = () => {
             <Button
               color="error"
               type="reset"
+              disabled={validationCancel}
               variant="contained"
               startIcon={<CancelOutlined />}
             >
@@ -484,6 +513,12 @@ const Customer: React.FC = () => {
           </GridContainer>
         </Form>
       </BoxContainer>
+      <Modal
+        text={"Deseja realmente cancelar a operação ?"}
+        open={openModal}
+        handleClose={handleClear}
+        cancel={handleClose}
+      />
     </ContainerForm>
   );
 };
