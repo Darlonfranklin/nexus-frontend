@@ -30,12 +30,9 @@ export const GridContent = styled(Grid)`
 
 export const ImageLogo = styled.img`
     margin-bottom: 30px;
-
-    width: 65%;
 `;
 
 export const Logo = styled.div`
-     width: 100%;
   height: auto;
   text-align: center;
   justify-content: center;

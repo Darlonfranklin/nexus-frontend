@@ -32,7 +32,7 @@ const Modal: React.FC<IModal> = ({ open, handleClose, cancel, text }) => {
         <ActionsModal>
           <Button
             startIcon={<CheckOutlined />}
-            color="info"
+            color="primary"
             variant="contained"
             onClick={handleClose}
           >

@@ -13,7 +13,6 @@ import { insertMaskInCEP } from "../../functions/cep";
 import { insertMaskInCpf } from "../../functions/cpf";
 import { insertMaskInPhone } from "../../functions/phone";
 import {
-  CancelOutlined,
   CheckOutlined,
   Search,
   AddCircleOutline,
@@ -37,6 +36,7 @@ import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
 import { ICustomer } from "../../models/customer";
 import { AxiosResponse } from "axios";
+import Select from "../../components/Select";
 
 const CustomerEdit: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -86,21 +86,6 @@ const CustomerEdit: React.FC = () => {
     !uf ||
     !complement ||
     !number;
-
-  const handleClear = (): void => {
-    setName("");
-    setCpf("");
-    setPhone("");
-    setEmail("");
-    setCep("");
-    setSex("");
-    setStreetName("");
-    setNeighborhood("");
-    setLocality("");
-    setUf("");
-    setComplement("");
-    setNumber("");
-  };
 
   const navigate = useNavigate();
 
@@ -194,7 +179,6 @@ const CustomerEdit: React.FC = () => {
           onSubmit={(event: React.ChangeEvent<HTMLInputElement>) =>
             handleUpdate(event, id, data)
           }
-          onReset={handleClear}
         >
           <GridContainer container spacing={1}>
             <GridContent item xs={12} sm={4}>
@@ -253,8 +237,7 @@ const CustomerEdit: React.FC = () => {
               />
             </GridContent>
             <GridContent item xs={12} sm={3}>
-              <Input
-                select
+              <Select
                 size="small"
                 label="Sexo*"
                 name="sexo"
@@ -285,7 +268,7 @@ const CustomerEdit: React.FC = () => {
                     {item}
                   </MenuItem>
                 ))}
-              </Input>
+              </Select>
             </GridContent>
 
             <GridContent item xs={12} sm={3}>
@@ -564,14 +547,7 @@ const CustomerEdit: React.FC = () => {
             >
               Alterar
             </Button>
-            <Button
-              type="reset"
-              color="error"
-              variant="contained"
-              startIcon={<CancelOutlined />}
-            >
-              Cancelar
-            </Button>
+
             <Button
               color="success"
               variant="contained"

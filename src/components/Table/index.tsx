@@ -19,6 +19,7 @@ import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Button } from "./styles";
 import { useNavigate } from "react-router-dom";
+import Modal from "../Dialog";
 
 interface Column {
   field: string;
@@ -130,6 +131,17 @@ const TableList: React.FC<TableProps> = ({
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageOptions[0]);
   const navigate = useNavigate();
+
+  const [openModal, setOpenModal] = React.useState<boolean>(false);
+
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
+
   const handleChangePage = (_event: any, newPage: number) => {
     setPage(newPage);
     onPageChange && onPageChange(newPage);
@@ -202,7 +214,11 @@ const TableList: React.FC<TableProps> = ({
                           color="inherit"
                         />
                       </Button>
-                      <Button variant="contained" color="error">
+                      <Button
+                        variant="contained"
+                        color="error"
+                        onClick={() => handleClickOpen()}
+                      >
                         <DeleteOutlineIcon
                           style={{ width: 15 }}
                           color="inherit"
@@ -217,7 +233,12 @@ const TableList: React.FC<TableProps> = ({
             </TableRow>
           ))}
         </TableBody>
-
+        <Modal
+          text={"Deseja realmente exluir o registro ?"}
+          handleClose={() => {}}
+          open={openModal}
+          cancel={handleClose}
+        />
         <TableFooter>
           <TableRow>
             <TablePagination

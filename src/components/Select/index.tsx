@@ -11,6 +11,7 @@ interface IInput {
   InputLabelProps?: InputLabelProps;
   size?: "small" | "medium" | "large" | any;
   name: string;
+  select?: boolean;
   defaultValue?: string;
   autoFocus?: boolean;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
@@ -23,7 +24,7 @@ interface IInput {
   style?: React.CSSProperties;
 }
 
-const Input: React.FC<IInput> = ({
+const Select: React.FC<IInput> = ({
   label,
   type,
   placeholder,
@@ -47,6 +48,7 @@ const Input: React.FC<IInput> = ({
   return (
     <TextField
       label={label}
+      select={true}
       type={type}
       name={name}
       size={size}
@@ -70,4 +72,4 @@ const Input: React.FC<IInput> = ({
   );
 };
 
-export default Input;
+export default Select;

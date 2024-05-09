@@ -32,10 +32,16 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-import { InputAdornment, MenuItem, Paper } from "@mui/material";
+import {
+  CircularProgress,
+  InputAdornment,
+  MenuItem,
+  Paper,
+} from "@mui/material";
 import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
-import Modal from "../../components/Dialog";
+import { ICustomer } from "../../models/customer";
+import Select from "../../components/Select";
 
 const Customer: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -51,18 +57,16 @@ const Customer: React.FC = () => {
   const [complement, setComplement] = useState<string>("");
   const [number, setNumber] = useState<string>("");
   const [country, _setCountry] = useState<string>("BRASIL");
-  const [openModal, setOpenModal] = useState<boolean>(false);
-
+  const [cpfIsValid, setCpfIsValid] = useState<boolean>(false);
+  const [phoneIsValid, setPhoneIsValid] = useState<boolean>(false);
+  const [cpfMessageError, setCpfMessageError] = useState<string>("");
+  const [phoneMessageError, setPhoneMessageError] = useState<string>("");
+  const [emailIsValid, setEmailIsValid] = useState<boolean>(false);
+  const [emailMessageError, setEmailMessageError] = useState<string>("");
+  const [load, setLoad] = useState<boolean>(false);
   const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
 
-  const handleClose = () => {
-    setOpenModal(false);
-  };
-
-  const handleClickOpen = () => {
-    setOpenModal(true);
-  };
-  const validationCancel =
+  const validationCancel: boolean =
     !name &&
     !cpf &&
     !phone &&
@@ -76,7 +80,7 @@ const Customer: React.FC = () => {
     !complement &&
     !number;
 
-  let data = {
+  const data: ICustomer = {
     name: name,
     cpf: cpf,
     phone: phone,
@@ -92,7 +96,7 @@ const Customer: React.FC = () => {
     country: country,
   };
 
-  let validationSave: boolean =
+  const validationSave: boolean =
     !name ||
     !cpf ||
     !phone ||
@@ -119,30 +123,78 @@ const Customer: React.FC = () => {
     setUf("");
     setComplement("");
     setNumber("");
-    handleClose();
   };
 
   const navigate = useNavigate();
 
-  const checkCEP = async (e: any) => {
-    const numberCep = e.target.value;
+  const validating: boolean =
+    emailIsValid || !phoneIsValid || !cpfIsValid || validationSave;
 
+  const searchCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
-      const result = await client.get(
-        `https://viacep.com.br/ws/${numberCep}/json/`
-      );
+      setLoad(true);
+      const CEP = e.target.value;
+      const result = await client.get(`https://viacep.com.br/ws/${CEP}/json/`);
       const { cep, logradouro, bairro, localidade, uf } = result.data;
       setCep(cep);
       setStreetName(logradouro.toUpperCase());
       setNeighborhood(bairro.toUpperCase());
       setLocality(localidade.toUpperCase());
       setUf(uf.toUpperCase());
-    } catch (error: any) {
-      console.error(error);
+      setLoad(false);
+    } catch (e) {
+      setLoad(false);
     }
   };
 
   const { save } = useCustomerService();
+
+  const validSizeCpf = (value: string) => {
+    let message: string = "";
+    let isValid: boolean = false;
+
+    if (value.length < 14) {
+      isValid = false;
+      message = "CPF inválido";
+    } else {
+      isValid = true;
+      message = "";
+    }
+
+    setCpfMessageError(message);
+    setCpfIsValid(isValid);
+  };
+
+  const validSizePhone = (value: string) => {
+    let message: string = "";
+    let isValid: boolean = false;
+
+    if (value.length < 15) {
+      isValid = false;
+      message = "Telefone inválido";
+    } else {
+      isValid = true;
+      message = "";
+    }
+
+    setPhoneIsValid(isValid);
+    setPhoneMessageError(message);
+  };
+
+  const validEmail = (email: string) => {
+    let message: string = "";
+    let isValid: boolean = true;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      isValid = false;
+      message = "Endereço de e-mail inválido.";
+    }
+
+    setEmailIsValid(isValid);
+    setEmailMessageError(message);
+  };
 
   const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -159,23 +211,26 @@ const Customer: React.FC = () => {
     const rawValue = event.target.value;
     const formattedCpf = insertMaskInCpf(rawValue.slice(0, 14));
     setCpf(formattedCpf);
+    validSizeCpf(rawValue);
   };
 
   const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
     const formattedPhone = insertMaskInPhone(rawValue.slice(0, 15));
     setPhone(formattedPhone);
+    validSizePhone(rawValue);
   };
 
+  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = event.target.value.toUpperCase();
+    setEmail(rawValue);
+    validEmail(rawValue);
+  };
   return (
     <ContainerForm maxWidth="xl">
       <BoxContainer component={Paper}>
         <Title>CADASTRAR CLIENTE</Title>
-        <Form
-          component="form"
-          onSubmit={handleSubmit}
-          onReset={handleClickOpen}
-        >
+        <Form component="form" onSubmit={handleSubmit} onReset={handleClear}>
           <GridContainer container spacing={1}>
             <GridContent item xs={12} sm={4}>
               <Input
@@ -211,6 +266,7 @@ const Customer: React.FC = () => {
                 onChange={handleCpfChange}
                 value={cpf}
                 fullWidth
+                helperText={cpfMessageError}
                 InputLabelProps={{
                   style: { fontSize: "0.9rem" },
                 }}
@@ -225,8 +281,7 @@ const Customer: React.FC = () => {
               />
             </GridContent>
             <GridContent item xs={12} sm={3}>
-              <Input
-                select
+              <Select
                 size="small"
                 label="Sexo*"
                 name="sexo"
@@ -253,7 +308,7 @@ const Customer: React.FC = () => {
                     {item}
                   </MenuItem>
                 ))}
-              </Input>
+              </Select>
             </GridContent>
 
             <GridContent item xs={12} sm={3}>
@@ -263,6 +318,7 @@ const Customer: React.FC = () => {
                 name="phone"
                 type="text"
                 value={phone}
+                helperText={phoneMessageError}
                 onChange={handlePhoneChange}
                 fullWidth
                 InputLabelProps={{
@@ -284,10 +340,9 @@ const Customer: React.FC = () => {
                 label="E-mail*"
                 name="email"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value.toUpperCase())
-                }
+                onChange={handleEmail}
                 value={email}
+                helperText={emailMessageError}
                 fullWidth
                 InputLabelProps={{
                   style: { fontSize: "0.9rem" },
@@ -309,13 +364,19 @@ const Customer: React.FC = () => {
                 name="cep"
                 type="text"
                 value={cep}
-                onBlur={(e: React.ChangeEvent<HTMLInputElement>) => checkCEP(e)}
+                onBlur={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  searchCep(e)
+                }
                 onChange={(event: any) => handleCepChange(event)}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Search fontSize={"small"} />
+                      {load ? (
+                        <CircularProgress size={20} color="inherit" />
+                      ) : (
+                        <Search fontSize={"small"} />
+                      )}
                     </InputAdornment>
                   ),
                 }}
@@ -485,7 +546,7 @@ const Customer: React.FC = () => {
             </GridContent>
 
             <Button
-              disabled={validationSave}
+              disabled={validating}
               color="primary"
               variant="contained"
               type="submit"
@@ -513,12 +574,6 @@ const Customer: React.FC = () => {
           </GridContainer>
         </Form>
       </BoxContainer>
-      <Modal
-        text={"Deseja realmente cancelar a operação ?"}
-        open={openModal}
-        handleClose={handleClear}
-        cancel={handleClose}
-      />
     </ContainerForm>
   );
 };
