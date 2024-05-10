@@ -44,12 +44,13 @@ import { ICustomer } from "../../models/customer";
 import Select from "../../components/Select";
 
 const Customer: React.FC = () => {
+  const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
   const [name, setName] = useState<string>("");
   const [cpf, setCpf] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [cep, setCep] = useState<string>("");
-  const [sex, setSex] = useState<string>("");
+  const [sex, setSex] = useState<string>(selectComboSexo[0]);
   const [streetName, setStreetName] = useState<string>("");
   const [neighborhood, setNeighborhood] = useState<string>("");
   const [locality, setLocality] = useState<string>("");
@@ -64,7 +65,6 @@ const Customer: React.FC = () => {
   const [emailIsValid, setEmailIsValid] = useState<boolean>(false);
   const [emailMessageError, setEmailMessageError] = useState<string>("");
   const [load, setLoad] = useState<boolean>(false);
-  const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
 
   const validationCancel: boolean =
     !name &&
@@ -128,7 +128,7 @@ const Customer: React.FC = () => {
   const navigate = useNavigate();
 
   const validating: boolean =
-    emailIsValid || !phoneIsValid || !cpfIsValid || validationSave;
+    !emailIsValid || !phoneIsValid || !cpfIsValid || validationSave;
 
   const searchCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -284,7 +284,7 @@ const Customer: React.FC = () => {
               <Select
                 size="small"
                 label="Sexo*"
-                name="sexo"
+                name="sex"
                 type="text"
                 value={sex}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
