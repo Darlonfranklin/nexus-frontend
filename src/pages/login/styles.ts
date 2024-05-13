@@ -43,3 +43,16 @@ export const Button = styled(ButtonUI)`
   margin-left: 1px !important;
   width: 100%;
 `;
+
+export const Copyright = styled.footer`
+    width: 100%; 
+    position: fixed; 
+    bottom: 0;
+    background-color: #f2f2f2;
+    padding: 10px 0; 
+    font-size: 11px;
+
+    p {
+      margin-left: 10px;
+    }
+`;

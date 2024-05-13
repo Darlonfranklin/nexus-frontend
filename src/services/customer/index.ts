@@ -21,6 +21,7 @@ export const useCustomerService = () => {
             navigate("/cadastros/cliente");
         }
     }
+
     const update = async (customerId: string, newData: ICustomer): Promise<ICustomer | undefined> => {
         try {
             const response: AxiosResponse<ICustomer> = await client.put<ICustomer>(`/clients/${customerId}`, newData);

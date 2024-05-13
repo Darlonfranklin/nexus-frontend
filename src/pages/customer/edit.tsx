@@ -6,6 +6,7 @@ import {
   GridContent,
   Title,
 } from "./styles";
+
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useEffect, useState } from "react";
@@ -91,7 +92,7 @@ const CustomerEdit: React.FC = () => {
 
   useEffect(() => {
     if (id === undefined) {
-      navigate("/dashboard");
+      navigate("/cliente/listar");
     }
   }, [id, navigate]);
 
@@ -115,7 +116,6 @@ const CustomerEdit: React.FC = () => {
     const fetchCustomerData = async () => {
       try {
         const response: AxiosResponse = await client.get(`/clients/${id}`);
-        console.log("Dados do cliente recebidos:", response.data);
         setClientData(response.data);
       } catch (error) {
         console.error("Erro ao buscar os dados do cliente:", error);

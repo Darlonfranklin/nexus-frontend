@@ -7,7 +7,7 @@ interface IInput {
   value: string | number | boolean;
   InputProps?: InputProps;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  maxLength?: any;
+  maxLength?: number;
   InputLabelProps?: InputLabelProps;
   size?: "small" | "medium" | "large" | any;
   name: string;
