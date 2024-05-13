@@ -28,6 +28,9 @@ export const GridContent = styled(Grid)`
     margin-bottom: 30px !important;
 `;
 
+
+export const Form = styled(Box)``;
+
 export const ImageLogo = styled.img`
     margin-bottom: 30px;
 `;

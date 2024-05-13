@@ -7,6 +7,7 @@ import {
   Button,
   Container,
   Copyright,
+  Form,
   GridContent,
   ImageLogo,
   Logo,
@@ -21,6 +22,11 @@ const LoginPage: React.FC = () => {
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    await signIn(username, password);
+  };
+
   return (
     <Fragment>
       <Container maxWidth="xs">
@@ -28,67 +34,69 @@ const LoginPage: React.FC = () => {
           <Logo>
             <ImageLogo src="/nexus.png" />
           </Logo>
-          <GridContent>
-            <Input
-              size="small"
-              label="Usuário do sistema"
-              name="user"
-              type="text"
-              value={username}
-              onChange={(e: any) => setUserName(e.target.value)}
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PermIdentityIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
+          <Form component="form" onSubmit={handleSubmit}>
+            <GridContent>
+              <Input
+                size="small"
+                label="Usuário do sistema"
+                name="user"
+                type="text"
+                value={username}
+                onChange={(e: any) => setUserName(e.target.value)}
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <PermIdentityIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
 
-          <GridContent>
-            <Input
-              size="small"
-              label="Senha"
-              name="password"
-              type="password"
-              fullWidth
-              value={password}
-              onChange={(e: any) => setPassword(e.target.value)}
-              InputLabelProps={{
-                shrink: true,
-                style: { fontSize: "0.9rem" },
-              }}
-              InputProps={{
-                style: { fontSize: "0.9rem", borderRadius: "1px" },
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <KeyIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </GridContent>
-          <Button
-            onClick={() => signIn(username, password)}
-            color="primary"
-            variant="contained"
-            startIcon={
-              loading ? (
-                <CircularProgress size={20} color="inherit" />
-              ) : (
-                <LoginIcon />
-              )
-            }
-          >
-            Acessar
-          </Button>
+            <GridContent>
+              <Input
+                size="small"
+                label="Senha"
+                name="password"
+                type="password"
+                fullWidth
+                value={password}
+                onChange={(e: any) => setPassword(e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                  style: { fontSize: "0.9rem" },
+                }}
+                InputProps={{
+                  style: { fontSize: "0.9rem", borderRadius: "1px" },
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <KeyIcon />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </GridContent>
+            <Button
+              color="primary"
+              type="submit"
+              variant="contained"
+              startIcon={
+                loading ? (
+                  <CircularProgress size={20} color="inherit" />
+                ) : (
+                  <LoginIcon />
+                )
+              }
+            >
+              Acessar
+            </Button>
+          </Form>
         </BoxContainer>
       </Container>
       <Copyright>
