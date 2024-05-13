@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+
 import AppRoutes from "./app.routes";
 import LoginPage from "../pages/login";
 import { useAuth } from "../contexts/auth";
@@ -26,12 +27,6 @@ const AuthRoutes: React.FC = () => {
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
   }, [logged, log]);
-
-  useEffect(() => {
-    if (!logged) {
-      if (!window.location.reload) window.location.reload();
-    }
-  }, [logged]);
 
   return (
     <Fragment>
