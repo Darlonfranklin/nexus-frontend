@@ -6,6 +6,7 @@ import {
   Details,
   GridContainer,
   GridContent,
+  Img,
   Title,
 } from "./styles";
 import { useEffect, useState } from "react";
@@ -14,7 +15,7 @@ import client from "../../services/axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { ICustomer } from "../../models/customer";
 import Button from "../../components/Button";
-import { Add, ArrowBack } from "@mui/icons-material";
+import { Add, ArrowBack, PictureAsPdf } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FeedIcon from "@mui/icons-material/Feed";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -66,13 +67,13 @@ const Information: React.FC = () => {
   };
 
   return (
-    <ContainerInformation maxWidth="lg">
+    <ContainerInformation>
       <BoxContainer component={Paper}>
         <Title>
           <VisibilityIcon style={{ marginRight: 10 }} /> DETALHES DO CLIENTE
         </Title>
         <GridContainer container>
-          <GridContent item xs={12} sm={8}>
+          <GridContent item xs={30} sm={7}>
             <Details>
               <FeedIcon style={{ marginRight: 10 }} /> INFORMAÇÕES PESSOAIS
             </Details>
@@ -91,6 +92,7 @@ const Information: React.FC = () => {
             <Data>
               <strong>E-mail :</strong> {email}
             </Data>
+            <Img src="/nexus.png" />
           </GridContent>
           <GridContent item xs={20} sm={4}>
             <Details>
@@ -136,6 +138,13 @@ const Information: React.FC = () => {
             onClick={() => navigate("/cadastros/cliente")}
           >
             Novo Cadastro
+          </Button>
+          <Button
+            variant="contained"
+            color="error"
+            startIcon={<PictureAsPdf />}
+          >
+            PDF
           </Button>
         </GridContainer>
       </BoxContainer>

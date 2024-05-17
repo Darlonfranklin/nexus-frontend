@@ -22,13 +22,14 @@ export const ContentModal = styled(DialogContent)`
   margin-top: 35px;
 `;
 
-export const TextModal = styled(DialogContentText)``;
+export const TextModal = styled(DialogContentText)`
+  font-size: 20px !important;
+`;
 
 export const ActionsModal = styled(DialogActions)``;
 
 export const Attention = styled(ReportProblemIcon)`
-  
-            color: #FFFF00;
-             margin-left: 5px;
-
+   color: #FFFF00;
+   margin-left: 5px;
+           
 `;

@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import { useEffect, useState } from "react";
 import {
   Copyright,
@@ -19,6 +20,7 @@ import {
   Separator,
   Title,
   TitleVersion,
+  User,
 } from "./styles";
 import CheckIcon from "@mui/icons-material/Check";
 import ExpandableList from "../List";
@@ -105,7 +107,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function DrawerMenu({ children }: any) {
   const theme = useTheme();
-  const { signOut } = useAuth();
+  const { signOut, username } = useAuth();
 
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -161,7 +163,12 @@ export default function DrawerMenu({ children }: any) {
           >
             <MenuIcon />
           </IconButton>
-          <Title>NEXUS</Title>
+          <Title>
+            <User>
+              <SentimentSatisfiedAltIcon style={{ marginRight: 8 }} />
+              <p>Bem Vindo(a): {username}</p>
+            </User>
+          </Title>
           <Modal
             text={"Deseja realmente sair do sistema ?"}
             handleClose={signOut}

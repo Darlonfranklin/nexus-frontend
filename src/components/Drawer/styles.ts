@@ -70,3 +70,13 @@ export const Copyright = styled.footer`
       margin-left: 10px;
     }
 `;
+
+export const User = styled.div`
+  display: flex;
+  align-items: center;
+  
+  p {
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+  }
+`;

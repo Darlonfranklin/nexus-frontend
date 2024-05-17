@@ -11,6 +11,7 @@ type AuthProviderProps = {
 interface IAuthContext {
   logged: boolean;
   loading: boolean;
+  username: string | null;
   signIn(username: string, password: string): Promise<void>;
   signOut(): void;
 }
@@ -24,6 +25,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   });
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [username, setUsername] = useState<string | null>(() => {
+    return localStorage.getItem("@nexus.application:username");
+  });
+
   useEffect(() => {
     const isLogged = localStorage.getItem("@nexus.application:logged");
     if (!isLogged) {
@@ -46,6 +51,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         localStorage.setItem("@nexus.application:token", token);
         localStorage.setItem("@nexus.application:logged", "true");
         setLogged(true);
+        setUsername(username);
+        localStorage.setItem("@nexus.application:username", username);
         toast.success("LOGADO COM SUCESSO!");
         navigate("dashboard");
       } else {
@@ -60,12 +67,16 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signOut = () => {
     localStorage.removeItem("@nexus.application:logged");
     localStorage.removeItem("@nexus.application:token");
+    localStorage.removeItem("@nexus.application:username");
     navigate("/login");
     setLogged(false);
+    setUsername(null);
   };
 
   return (
-    <AuthContext.Provider value={{ logged, loading, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ logged, loading, username, signIn, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

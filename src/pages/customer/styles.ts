@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const BoxContainer = styled(Box)`
   padding: 50px;
+  height: 60vh auto;
 `;
 
 export const GridContainer = styled(Grid)``;
@@ -34,7 +35,9 @@ export const Details = styled.h3`
 export const Data = styled.p`
   margin-bottom: 25px;
   color: gray;
-  
+`;
+export const Img = styled.img`
+  margin-top: 15px;
 `;
 
 export const GridContent = styled(Grid)`
