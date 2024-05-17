@@ -24,6 +24,7 @@ const AppRoutes: React.FC = () => {
   return (
     <DrawerMenu>
       <Routes>
+        <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cadastros">
           <Route path="cliente" element={<Customer />} />

@@ -34,6 +34,7 @@ export const Details = styled.h3`
 export const Data = styled.p`
   margin-bottom: 25px;
   color: gray;
+  
 `;
 
 export const GridContent = styled(Grid)`

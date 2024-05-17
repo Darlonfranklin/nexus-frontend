@@ -59,13 +59,24 @@ const Customer: React.FC = () => {
   const [complement, setComplement] = useState<string>("");
   const [number, setNumber] = useState<string>("");
   const [country, _setCountry] = useState<string>("BRASIL");
-  const [cpfIsValid, setCpfIsValid] = useState<boolean>(false);
-  const [phoneIsValid, setPhoneIsValid] = useState<boolean>(false);
-  const [cpfMessageError, setCpfMessageError] = useState<string>("");
-  const [phoneMessageError, setPhoneMessageError] = useState<string>("");
-  const [emailIsValid, setEmailIsValid] = useState<boolean>(false);
-  const [emailMessageError, setEmailMessageError] = useState<string>("");
   const [load, setLoad] = useState<boolean>(false);
+
+  const { save } = useCustomerService();
+  const navigate = useNavigate();
+
+  const validationSave: boolean =
+    !name ||
+    !cpf ||
+    !phone ||
+    !email ||
+    !cep ||
+    !sex ||
+    !streetName ||
+    !neighborhood ||
+    !locality ||
+    !uf ||
+    !complement ||
+    !number;
 
   const validationCancel: boolean =
     !name &&
@@ -96,20 +107,6 @@ const Customer: React.FC = () => {
     country: country,
   };
 
-  const validationSave: boolean =
-    !name ||
-    !cpf ||
-    !phone ||
-    !email ||
-    !cep ||
-    !sex ||
-    !streetName ||
-    !neighborhood ||
-    !locality ||
-    !uf ||
-    !complement ||
-    !number;
-
   const handleClear = (): void => {
     setName("");
     setCpf("");
@@ -124,11 +121,6 @@ const Customer: React.FC = () => {
     setComplement("");
     setNumber("");
   };
-
-  const navigate = useNavigate();
-
-  const validating: boolean =
-    !emailIsValid || !phoneIsValid || !cpfIsValid || validationSave;
 
   const searchCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -147,58 +139,6 @@ const Customer: React.FC = () => {
     }
   };
 
-  const { save } = useCustomerService();
-
-  const validSizeCpf = (value: string) => {
-    let message: string = "";
-    let isValid: boolean = false;
-
-    if (value.length < 14) {
-      isValid = false;
-      message = "CPF inválido";
-    } else {
-      isValid = true;
-      message;
-    }
-
-    setCpfMessageError(message);
-    setCpfIsValid(isValid);
-  };
-
-  const validSizePhone = (value: string) => {
-    let message: string = "";
-    let isValid: boolean = false;
-
-    if (value.length < 15) {
-      isValid = false;
-      message = "Telefone inválido";
-    } else {
-      isValid = true;
-      message;
-    }
-
-    setPhoneIsValid(isValid);
-    setPhoneMessageError(message);
-  };
-
-  const validEmail = (email: string) => {
-    let message: string = "";
-    let isValid: boolean = true;
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
-      isValid = false;
-      message = "Endereço de e-mail inválido.";
-    } else {
-      isValid = true;
-      message;
-    }
-
-    setEmailIsValid(isValid);
-    setEmailMessageError(message);
-  };
-
   const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     await save(data);
@@ -214,20 +154,17 @@ const Customer: React.FC = () => {
     const rawValue = event.target.value;
     const formattedCpf = insertMaskInCpf(rawValue.slice(0, 14));
     setCpf(formattedCpf);
-    validSizeCpf(rawValue);
   };
 
   const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
     const formattedPhone = insertMaskInPhone(rawValue.slice(0, 15));
     setPhone(formattedPhone);
-    validSizePhone(rawValue);
   };
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value.toUpperCase();
     setEmail(rawValue);
-    validEmail(rawValue);
   };
 
   return (
@@ -273,7 +210,6 @@ const Customer: React.FC = () => {
                 onChange={handleCpfChange}
                 value={cpf}
                 fullWidth
-                helperText={cpfMessageError}
                 InputLabelProps={{
                   style: { fontSize: "0.9rem" },
                 }}
@@ -284,6 +220,10 @@ const Customer: React.FC = () => {
                       <ArticleOutlined fontSize={"small"} />
                     </InputAdornment>
                   ),
+                  inputProps: {
+                    minLength: 14,
+                    maxLength: 14,
+                  },
                 }}
               />
             </GridContent>
@@ -323,9 +263,8 @@ const Customer: React.FC = () => {
                 size="small"
                 label="Telefone*"
                 name="phone"
-                type="text"
+                type="tel"
                 value={phone}
-                helperText={phoneMessageError}
                 onChange={handlePhoneChange}
                 fullWidth
                 InputLabelProps={{
@@ -338,6 +277,10 @@ const Customer: React.FC = () => {
                       <LocalPhoneOutlined fontSize={"small"} />
                     </InputAdornment>
                   ),
+                  inputProps: {
+                    minLength: 14,
+                    maxLength: 14,
+                  },
                 }}
               />
             </GridContent>
@@ -346,10 +289,9 @@ const Customer: React.FC = () => {
                 size="small"
                 label="E-mail*"
                 name="email"
-                type="text"
+                type="email"
                 onChange={handleEmail}
                 value={email}
-                helperText={emailMessageError}
                 fullWidth
                 InputLabelProps={{
                   style: { fontSize: "0.9rem" },
@@ -553,7 +495,7 @@ const Customer: React.FC = () => {
             </GridContent>
 
             <Button
-              disabled={validating}
+              disabled={validationSave}
               color="primary"
               variant="contained"
               type="submit"

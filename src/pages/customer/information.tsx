@@ -77,19 +77,19 @@ const Information: React.FC = () => {
               <FeedIcon style={{ marginRight: 10 }} /> INFORMAÇÕES PESSOAIS
             </Details>
             <Data>
-              <strong>Nome:</strong> {name}
+              <strong>Nome :</strong> {name}
             </Data>
             <Data>
-              <strong>Cpf:</strong> {cpf}
+              <strong>CPF :</strong> {cpf}
             </Data>
             <Data>
-              <strong>Telefone:</strong> {phone}
+              <strong>Telefone :</strong> {phone}
             </Data>
             <Data>
-              <strong>Sexo:</strong> {sex}
+              <strong>Sexo :</strong> {sex}
             </Data>
             <Data>
-              <strong>E-mail:</strong> {email}
+              <strong>E-mail :</strong> {email}
             </Data>
           </GridContent>
           <GridContent item xs={20} sm={4}>
@@ -97,28 +97,28 @@ const Information: React.FC = () => {
               <LocationOnIcon style={{ marginRight: 10 }} /> ENDEREÇO
             </Details>
             <Data>
-              <strong>Cep:</strong> {cep}
+              <strong>CEP :</strong> {cep}
             </Data>
             <Data>
-              <strong>Rua:</strong> {streetName}
+              <strong>Rua :</strong> {streetName}
             </Data>
             <Data>
-              <strong>Bairro:</strong> {neighborhood}
+              <strong>Bairro :</strong> {neighborhood}
             </Data>
             <Data>
-              <strong>Cidade:</strong> {locality}
+              <strong>Cidade :</strong> {locality}
             </Data>
             <Data>
-              <strong>Uf:</strong> {uf}
+              <strong>UF :</strong> {uf}
             </Data>
             <Data>
-              <strong>Complemento:</strong> {complement}
+              <strong>Complemento :</strong> {complement}
             </Data>
             <Data>
-              <strong>Número:</strong> {number}
+              <strong>Número :</strong> {number}
             </Data>
             <Data>
-              <strong>Pais:</strong> {country}
+              <strong>Pais :</strong> {country}
             </Data>
           </GridContent>
           <Button
