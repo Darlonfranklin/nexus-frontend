@@ -58,3 +58,15 @@ export const Separator = styled.p`
   margin-left: 13px;
   margin-right: 13px;
 `;
+
+export const Copyright = styled.footer`
+    width: 100%; 
+    position: fixed; 
+    bottom: 0;
+    padding: 5px 0; 
+    font-size: 11px;
+
+    p {
+      margin-left: 10px;
+    }
+`;

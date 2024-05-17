@@ -29,6 +29,7 @@ import {
   HomeWorkOutlined,
   NumbersOutlined,
   PublicOutlined,
+  PersonAddAlt1,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
@@ -72,7 +73,6 @@ const Customer: React.FC = () => {
     !phone &&
     !email &&
     !cep &&
-    !sex &&
     !streetName &&
     !neighborhood &&
     !locality &&
@@ -113,10 +113,10 @@ const Customer: React.FC = () => {
   const handleClear = (): void => {
     setName("");
     setCpf("");
+    setSex("");
     setPhone("");
     setEmail("");
     setCep("");
-    setSex("");
     setStreetName("");
     setNeighborhood("");
     setLocality("");
@@ -158,7 +158,7 @@ const Customer: React.FC = () => {
       message = "CPF inválido";
     } else {
       isValid = true;
-      message = "";
+      message;
     }
 
     setCpfMessageError(message);
@@ -174,7 +174,7 @@ const Customer: React.FC = () => {
       message = "Telefone inválido";
     } else {
       isValid = true;
-      message = "";
+      message;
     }
 
     setPhoneIsValid(isValid);
@@ -190,6 +190,9 @@ const Customer: React.FC = () => {
     if (!emailRegex.test(email)) {
       isValid = false;
       message = "Endereço de e-mail inválido.";
+    } else {
+      isValid = true;
+      message;
     }
 
     setEmailIsValid(isValid);
@@ -226,10 +229,14 @@ const Customer: React.FC = () => {
     setEmail(rawValue);
     validEmail(rawValue);
   };
+
   return (
     <ContainerForm maxWidth="xl">
       <BoxContainer component={Paper}>
-        <Title>CADASTRAR CLIENTE</Title>
+        <Title>
+          <PersonAddAlt1 style={{ marginRight: 10 }} fontSize="medium" />
+          CADASTRAR CLIENTE
+        </Title>
         <Form component="form" onSubmit={handleSubmit} onReset={handleClear}>
           <GridContainer container spacing={1}>
             <GridContent item xs={12} sm={4}>

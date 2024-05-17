@@ -14,11 +14,14 @@ export const useCustomerService = () => {
         try {
             const response: AxiosResponse<ICustomer> = await client.post<ICustomer>("/clients", customer);
             toast.success("Salvo com sucesso!!!");
-            navigate("listar");
             return response.data;
-        } catch (error) {
-            toast.error("Erro ao salvar!!!");
-            navigate("/cadastros/cliente");
+        } catch (error: any) {
+            const responseError = error.response.status === 403;
+            if (responseError) {
+                toast.error("CPF ou E-MAIL já em uso!")
+            } else {
+                toast.error("ERRO ao salvar")
+            }
         }
     }
 
@@ -26,7 +29,6 @@ export const useCustomerService = () => {
         try {
             const response: AxiosResponse<ICustomer> = await client.put<ICustomer>(`/clients/${customerId}`, newData);
             toast.success("Dados do cliente atualizados com sucesso!!!");
-            navigate("/cadastros/cliente/listar");
             return response.data;
         } catch (error) {
             toast.error("Erro ao atualizar os dados do cliente!!!");

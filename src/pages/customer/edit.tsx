@@ -30,6 +30,7 @@ import {
   NumbersOutlined,
   PublicOutlined,
 } from "@mui/icons-material";
+import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { InputAdornment, MenuItem, Paper } from "@mui/material";
@@ -173,7 +174,10 @@ const CustomerEdit: React.FC = () => {
   return (
     <ContainerEdit maxWidth="xl">
       <BoxContainer component={Paper}>
-        <Title>EDITAR CLIENTE</Title>
+        <Title>
+          <EditIcon fontSize="medium" style={{ marginRight: 10 }} />
+          EDITAR CLIENTE
+        </Title>
         <Form
           component="form"
           onSubmit={(event: React.ChangeEvent<HTMLInputElement>) =>

@@ -7,6 +7,7 @@ import Dashboard from "../pages/dashboard";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import LoginPage from "../pages/login";
+import Information from "../pages/customer/information";
 
 const AppRoutes: React.FC = () => {
   const [cookies, setCookie] = useCookies(["dashboardRoute"]);
@@ -28,6 +29,7 @@ const AppRoutes: React.FC = () => {
           <Route path="cliente" element={<Customer />} />
           <Route path="cliente/listar" element={<List />} />
           <Route path="cliente/editar/:id" element={<CustomerEdit />} />
+          <Route path="cliente/informações/:id" element={<Information />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route

@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Search from "../../components/Search";
 import { AxiosResponse } from "axios";
 import Button from "../../components/Button";
-import { ArrowBack } from "@mui/icons-material";
+import { ArrowBack, Reorder } from "@mui/icons-material";
 import { getColumns } from "../../columns/customer";
 
 const List: React.FC = () => {
@@ -48,7 +48,10 @@ const List: React.FC = () => {
 
   return (
     <ContainerList>
-      <Title>CLIENTES CADASTRADOS </Title>
+      <Title>
+        <Reorder fontSize="medium" style={{ marginRight: 10 }} />
+        CLIENTES CADASTRADOS
+      </Title>
       <Search value={filterText} onChange={handleFilterChange} />
       <TableList
         columns={columns}

@@ -2,13 +2,13 @@ import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import CssBaseline from "@mui/material/CssBaseline";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useEffect, useState } from "react";
 import {
+  Copyright,
   DateView,
   Exit,
   HourView,
@@ -147,7 +147,6 @@ export default function DrawerMenu({ children }: any) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
       <AppBar open={open}>
         <MyToolBar>
           <IconButton
@@ -197,13 +196,19 @@ export default function DrawerMenu({ children }: any) {
         <Logo>
           {open ? <ImageP src="/nexus.png" /> : <ImageL src="/logo.png" />}
         </Logo>
+
         {menusItems.map((menu: any, subIndex: any) => (
           <ExpandableList key={subIndex} items={menu} />
         ))}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, marginTop: 10 }}>
-        <DrawerHeader />
+      <Box component="main" sx={{ flexGrow: 1, marginTop: 15 }}>
         {children}
+        <Copyright>
+          <p>
+            &copy; 2024. Todos os direitos reservados. Darlon Franklin
+            Rodrigues.
+          </p>
+        </Copyright>
       </Box>
     </Box>
   );

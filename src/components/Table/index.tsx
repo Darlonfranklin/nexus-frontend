@@ -20,12 +20,14 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Button } from "./styles";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Dialog";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { Tooltip } from "@mui/material";
 
 interface Column {
   field: string;
   headerName: string;
   width?: number;
-  align?: "left" | "right" | "center";
+  align?: "left" | "right" | "center" | any;
 }
 
 interface Row {
@@ -162,6 +164,12 @@ const TableList: React.FC<TableProps> = ({
     }
   };
 
+  const onViewButtonClick = (rowData: any) => {
+    if (rowData) {
+      navigate(`/cadastros/cliente/informações/${rowData.id}`);
+    }
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -170,7 +178,7 @@ const TableList: React.FC<TableProps> = ({
             {columns.map((column, index) => (
               <TableCell
                 key={index}
-                align={column.align || "left"}
+                align={column.align || "center"}
                 style={{ width: column.width }}
               >
                 {column.headerName}
@@ -204,26 +212,33 @@ const TableList: React.FC<TableProps> = ({
                         width: "100%",
                       }}
                     >
-                      <Button
-                        variant="contained"
-                        color="info"
-                        onClick={() => onEditButtonClick(row)}
-                      >
-                        <ModeEditOutlineIcon
-                          style={{ width: 15 }}
-                          color="inherit"
-                        />
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        onClick={() => handleClickOpen()}
-                      >
-                        <DeleteOutlineIcon
-                          style={{ width: 15 }}
-                          color="inherit"
-                        />
-                      </Button>
+                      <Tooltip title="Editar">
+                        <Button
+                          variant="contained"
+                          color="info"
+                          onClick={() => onEditButtonClick(row)}
+                        >
+                          <ModeEditOutlineIcon color="inherit" />
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="Mais Informações">
+                        <Button
+                          variant="contained"
+                          color="success"
+                          onClick={() => onViewButtonClick(row)}
+                        >
+                          <VisibilityIcon color="inherit" />
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="Excluir">
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={() => handleClickOpen()}
+                        >
+                          <DeleteOutlineIcon color="inherit" />
+                        </Button>
+                      </Tooltip>
                     </div>
                   ) : (
                     row[column.field]
