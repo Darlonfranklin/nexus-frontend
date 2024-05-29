@@ -1,5 +1,5 @@
 import { Box, Container, Paper } from "@mui/material";
-import { BarChart, PieChart } from "@mui/x-charts";
+import { BarChart, Gauge, PieChart } from "@mui/x-charts";
 
 const chartSetting = {
   xAxis: [
@@ -110,8 +110,7 @@ const Dashboard: React.FC = () => {
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
-        justifyContent: "center",
-        width: "200%",
+        justifyContent: "space-between",
       }}
     >
       <Box
@@ -120,7 +119,7 @@ const Dashboard: React.FC = () => {
           padding: 10,
           marginRight: 22,
           marginBottom: 22,
-          minWidth: "300px",
+          height: 400,
         }}
       >
         <PieChart
@@ -133,8 +132,8 @@ const Dashboard: React.FC = () => {
               ],
             },
           ]}
-          width={642}
-          height={300}
+          width={715}
+          height={320}
         />
       </Box>
 
@@ -144,7 +143,7 @@ const Dashboard: React.FC = () => {
           padding: 10,
           marginRight: 22,
           marginBottom: 22,
-          minWidth: "300px",
+          height: 400,
         }}
       >
         <PieChart
@@ -157,8 +156,8 @@ const Dashboard: React.FC = () => {
               ],
             },
           ]}
-          width={642}
-          height={300}
+          width={715}
+          height={320}
         />
       </Box>
       <Box
@@ -167,29 +166,7 @@ const Dashboard: React.FC = () => {
           padding: 10,
           marginRight: 22,
           marginBottom: 22,
-          minWidth: "300px",
-        }}
-      >
-        <PieChart
-          series={[
-            {
-              data: [
-                { id: 0, value: 10, label: "series A" },
-                { id: 1, value: 15, label: "series B" },
-                { id: 2, value: 20, label: "series C" },
-              ],
-            },
-          ]}
-          width={642}
-          height={300}
-        />
-      </Box>
-      <Box
-        component={Paper}
-        style={{
-          padding: 10,
-          marginRight: 22,
-          marginBottom: 22,
+          height: 400,
         }}
       >
         <BarChart
@@ -200,9 +177,65 @@ const Dashboard: React.FC = () => {
           ]}
           layout="horizontal"
           {...chartSetting}
-          width={640}
-          height={300}
+          width={715}
+          height={320}
         />
+      </Box>
+      <Box
+        component={Paper}
+        style={{
+          padding: 10,
+          marginRight: 22,
+          marginBottom: 22,
+          height: 400,
+        }}
+      >
+        <BarChart
+          dataset={dataset}
+          yAxis={[{ scaleType: "band", dataKey: "month" }]}
+          series={[
+            { dataKey: "seoul", label: "Seoul rainfall", valueFormatter },
+          ]}
+          layout="horizontal"
+          {...chartSetting}
+          width={715}
+          height={320}
+        />
+      </Box>
+      <Box
+        component={Paper}
+        style={{
+          padding: 10,
+          marginRight: 22,
+          marginBottom: 22,
+          height: 400,
+        }}
+      >
+        <BarChart
+          dataset={dataset}
+          yAxis={[{ scaleType: "band", dataKey: "month" }]}
+          series={[
+            { dataKey: "seoul", label: "Seoul rainfall", valueFormatter },
+          ]}
+          layout="horizontal"
+          {...chartSetting}
+          width={715}
+          height={320}
+        />
+      </Box>
+      <Box
+        component={Paper}
+        style={{
+          padding: 10,
+          marginRight: 22,
+          marginBottom: 22,
+          alignItems: "center",
+          justifyContent: "center",
+          display: "flex",
+          height: 400,
+        }}
+      >
+        <Gauge width={715} height={300} value={50} />
       </Box>
     </Container>
   );

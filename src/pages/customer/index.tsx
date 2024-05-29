@@ -278,8 +278,8 @@ const Customer: React.FC = () => {
                     </InputAdornment>
                   ),
                   inputProps: {
-                    minLength: 14,
-                    maxLength: 14,
+                    minLength: 15,
+                    maxLength: 15,
                   },
                 }}
               />

@@ -19,6 +19,7 @@ import { Add, ArrowBack, PictureAsPdf } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import FeedIcon from "@mui/icons-material/Feed";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { toast } from "react-toastify";
 
 const Information: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -35,8 +36,9 @@ const Information: React.FC = () => {
   const [number, setNumber] = useState<string>("");
   const [country, setCountry] = useState<string>();
 
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
@@ -49,6 +51,23 @@ const Information: React.FC = () => {
 
     fetchCustomerData();
   }, []);
+
+  const generateReport = async (): Promise<void> => {
+    try {
+      const response: AxiosResponse = await client.get(
+        `/clients/relatorio/${id}`,
+        {
+          responseType: "blob",
+        }
+      );
+      const reportBlob = response.data;
+      const reportUrl = window.URL.createObjectURL(reportBlob);
+      window.open(reportUrl, "_blank");
+      window.URL.revokeObjectURL(reportUrl);
+    } catch (error) {
+      toast.error("Erro ao gerar relatório, tente novamente!!!");
+    }
+  };
 
   const setClientData = (customer: ICustomer) => {
     setName(customer.name.toUpperCase());
@@ -142,6 +161,7 @@ const Information: React.FC = () => {
           <Button
             variant="contained"
             color="error"
+            onClick={generateReport}
             startIcon={<PictureAsPdf />}
           >
             PDF

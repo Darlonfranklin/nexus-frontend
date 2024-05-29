@@ -16,15 +16,9 @@ export const useCustomerService = () => {
             toast.success("Salvo com sucesso!!!");
             return response.data;
         } catch (error: any) {
-            if (error.response) {
-                const statusCode = error.response.status;
-                if (statusCode === 403) {
-                    toast.error("CPF ou E-MAIL já em uso!");
-                } else if (statusCode === 500) {
-                    toast.error("ERRO ao salvar");
-                } else {
-                    toast.error("Ocorreu um erro inesperado");
-                }
+            const statusCode = error.response.status;
+            if (statusCode === 400) {
+                toast.error("CPF ou E-MAIL já em uso!");
             } else {
                 toast.error("Erro de conexão. Verifique sua rede e tente novamente.");
             }
