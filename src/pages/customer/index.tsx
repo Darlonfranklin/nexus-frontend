@@ -8,7 +8,7 @@ import {
 } from "./styles";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { insertMaskInCEP } from "../../functions/cep";
 import { insertMaskInCpf } from "../../functions/cpf";
 import { insertMaskInPhone } from "../../functions/phone";
@@ -122,7 +122,7 @@ const Customer: React.FC = () => {
     setNumber("");
   };
 
-  const searchCep = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const searchCep = async (e: ChangeEvent<HTMLInputElement>) => {
     try {
       setLoad(true);
       const CEP = e.target.value;

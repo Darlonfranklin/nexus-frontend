@@ -91,12 +91,6 @@ const CustomerEdit: React.FC = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (id === undefined) {
-      navigate("/cliente/listar");
-    }
-  }, [id, navigate]);
-
   const checkCEP = async (e: any) => {
     const ceep = e.target.value;
 

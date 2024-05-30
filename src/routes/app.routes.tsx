@@ -4,26 +4,13 @@ import Customer from "../pages/customer";
 import List from "../pages/customer/list";
 import CustomerEdit from "../pages/customer/edit";
 import Dashboard from "../pages/dashboard";
-import { useEffect } from "react";
-import { useCookies } from "react-cookie";
-import LoginPage from "../pages/login";
 import Information from "../pages/customer/information";
 
 const AppRoutes: React.FC = () => {
-  const [cookies, setCookie] = useCookies(["dashboardRoute"]);
-
-  useEffect(() => {
-    const token = localStorage.getItem("@nexus.application:token");
-    const logged = localStorage.getItem("@nexus.application:logged");
-
-    if (token && logged && !cookies.dashboardRoute) {
-      setCookie("dashboardRoute", { path: "/dashboard" });
-    }
-  }, [cookies.dashboardRoute, setCookie]);
-
   return (
     <DrawerMenu>
       <Routes>
+        <Route path="*" element={<Navigate to="/dashboard" />} />
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cadastros">
@@ -32,13 +19,6 @@ const AppRoutes: React.FC = () => {
           <Route path="cliente/editar/:id" element={<CustomerEdit />} />
           <Route path="cliente/informações/:id" element={<Information />} />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="*"
-          element={
-            <Navigate to={cookies.dashboardRoute || "/dashboard"} replace />
-          }
-        />
       </Routes>
     </DrawerMenu>
   );

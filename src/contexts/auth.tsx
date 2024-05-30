@@ -58,8 +58,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       } else {
         toast.error("FALHA AO LOGAR! TOKEN NÃO ENCONTRADO!");
       }
-    } catch (error: unknown) {
-      toast.warning("USUÁRIO / SENHA INCORRETOS!");
+    } catch (error: any) {
+      const statusCode = error.response.status;
+      if (statusCode) {
+        toast.warning("USUÁRIO / SENHA INCORRETOS!");
+      } else {
+        toast.error("Erro de conexão. Verifique sua rede e tente novamente.");
+      }
     }
     setLoading(false);
   };
