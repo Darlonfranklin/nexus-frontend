@@ -17,11 +17,13 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import TableHead from "@mui/material/TableHead";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Button } from "./styles";
+import { Button, RowsLength } from "./styles";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Dialog";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Tooltip } from "@mui/material";
+import { useCustomerService } from "../../services/customer";
+import { SearchOffOutlined } from "@mui/icons-material";
 
 interface Column {
   field: string;
@@ -132,11 +134,13 @@ const TableList: React.FC<TableProps> = ({
 }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageOptions[0]);
+  const [customerId, setCustomerId] = React.useState<string>("");
   const navigate = useNavigate();
-
   const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const { deleteId } = useCustomerService();
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (id: string) => {
+    setCustomerId(id);
     setOpenModal(true);
   };
 
@@ -170,6 +174,13 @@ const TableList: React.FC<TableProps> = ({
     }
   };
 
+  const onDeleteButtonClick = (customerId: string) => {
+    if (customerId) {
+      deleteId(customerId);
+      window.location.reload();
+      handleClose();
+    }
+  };
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -234,7 +245,7 @@ const TableList: React.FC<TableProps> = ({
                         <Button
                           variant="contained"
                           color="error"
-                          onClick={() => handleClickOpen()}
+                          onClick={() => handleClickOpen(row.id)}
                         >
                           <DeleteOutlineIcon color="inherit" />
                         </Button>
@@ -247,10 +258,18 @@ const TableList: React.FC<TableProps> = ({
               ))}
             </TableRow>
           ))}
+          {rows === undefined || rows.length === 0 ? (
+            <RowsLength>
+              Nenhum cliente encontrado
+              <SearchOffOutlined style={{ marginLeft: 8 }} />
+            </RowsLength>
+          ) : (
+            true
+          )}
         </TableBody>
         <Modal
           text={"Deseja realmente exluir o registro ?"}
-          handleClose={() => {}}
+          handleClose={() => onDeleteButtonClick(customerId)}
           open={openModal}
           cancel={handleClose}
         />

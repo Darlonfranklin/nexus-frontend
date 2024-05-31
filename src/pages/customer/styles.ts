@@ -1,4 +1,4 @@
-import { Box, Container as ContainerUi, Grid } from "@mui/material";
+import { Box, Container as ContainerUi, Grid, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const BoxContainer = styled(Box)`
@@ -19,8 +19,8 @@ export const ContainerEdit = styled(ContainerUi)``;
 
 export const ContainerInformation = styled(ContainerUi)``;
 
-export const Title = styled.h3`
-  margin-bottom: 50px;
+export const Title = styled(Typography)`
+  margin-bottom: 50px !important;
   align-items: center;
   display: flex;
   color: gray;
