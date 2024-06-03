@@ -1,4 +1,4 @@
-import * as React from "react";
+import {Fragment} from "react";
 import {
   ActionsModal,
   Attention,
@@ -19,7 +19,7 @@ interface IModal {
 
 const Modal: React.FC<IModal> = ({ open, handleClose, cancel, text }) => {
   return (
-    <React.Fragment>
+    <Fragment> 
       <ContainerModal open={open}>
         <TitleModal>
           {"Atenção"}
@@ -48,7 +48,7 @@ const Modal: React.FC<IModal> = ({ open, handleClose, cancel, text }) => {
           </Button>
         </ActionsModal>
       </ContainerModal>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

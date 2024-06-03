@@ -1,4 +1,5 @@
 import { InputLabelProps, InputProps, TextField } from "@mui/material";
+import { CSSProperties, ChangeEvent, FocusEvent, ReactNode } from "react";
 
 interface IInput {
   label?: string;
@@ -6,7 +7,7 @@ interface IInput {
   placeholder?: string;
   value: string | number | boolean;
   InputProps?: InputProps;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   maxLength?: number;
   InputLabelProps?: InputLabelProps;
   size?: "small" | "medium" | "large" | any;
@@ -14,14 +15,13 @@ interface IInput {
   select?: boolean;
   defaultValue?: string;
   autoFocus?: boolean;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  ref?: React.Ref<any>;
+  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   error?: boolean;
   helperText?: string;
   fullWidth?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
   disabled?: boolean;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 const Select: React.FC<IInput> = ({
@@ -37,7 +37,6 @@ const Select: React.FC<IInput> = ({
   defaultValue,
   autoFocus,
   onBlur,
-  ref,
   error,
   helperText,
   fullWidth,
@@ -54,7 +53,6 @@ const Select: React.FC<IInput> = ({
       size={size}
       placeholder={placeholder}
       onBlur={onBlur}
-      ref={ref}
       InputProps={InputProps}
       value={value}
       autoFocus={autoFocus}

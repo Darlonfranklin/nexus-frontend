@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import {
   List,
   ListItemButton,
@@ -11,13 +11,13 @@ import { useNavigate } from "react-router-dom";
 
 interface SubmenuItem {
   text: string;
-  icon: React.ReactElement;
+  icon: ReactElement;
   path: string;
 }
 
 interface MenuItem {
   text: string;
-  icon: React.ReactElement;
+  icon: ReactElement;
   path: string;
   submenus?: SubmenuItem[];
 }

@@ -39,10 +39,10 @@ import {
   MenuItem,
   Paper,
 } from "@mui/material";
-import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
 import { ICustomer } from "../../models/customer";
 import Select from "../../components/Select";
+import api from "../../services/axios";
 
 const Customer: React.FC = () => {
   const selectComboSexo = ["NÃO INFORMADO", "MASCULINO", "FEMININO"];
@@ -126,7 +126,7 @@ const Customer: React.FC = () => {
     try {
       setLoad(true);
       const CEP = e.target.value;
-      const result = await client.get(`https://viacep.com.br/ws/${CEP}/json/`);
+      const result = await api.get(`https://viacep.com.br/ws/${CEP}/json/`);
       const { cep, logradouro, bairro, localidade, uf } = result.data;
       setCep(cep);
       setStreetName(logradouro.toUpperCase());
@@ -139,30 +139,30 @@ const Customer: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     await save(data);
   };
 
-  const handleCepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCepChange = (event: ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value.replace(/[^\d]/g, "");
     const formattedCep = insertMaskInCEP(rawValue.slice(0, 8));
     setCep(formattedCep);
   };
 
-  const handleCpfChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCpfChange = (event: ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
     const formattedCpf = insertMaskInCpf(rawValue.slice(0, 14));
     setCpf(formattedCpf);
   };
 
-  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
     const formattedPhone = insertMaskInPhone(rawValue.slice(0, 15));
     setPhone(formattedPhone);
   };
 
-  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleEmail = (event: ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value.toUpperCase();
     setEmail(rawValue);
   };
@@ -183,7 +183,7 @@ const Customer: React.FC = () => {
                 label="Nome*"
                 name="name"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setName(e.target.value.toUpperCase())
                 }
                 value={name}
@@ -234,7 +234,7 @@ const Customer: React.FC = () => {
                 name="sex"
                 type="text"
                 value={sex}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setSex(e.target.value)
                 }
                 fullWidth
@@ -313,7 +313,7 @@ const Customer: React.FC = () => {
                 name="cep"
                 type="text"
                 value={cep}
-                onBlur={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onBlur={(e: ChangeEvent<HTMLInputElement>) =>
                   searchCep(e)
                 }
                 onChange={(event: any) => handleCepChange(event)}
@@ -429,7 +429,7 @@ const Customer: React.FC = () => {
                 label="Complemento*"
                 name="complement"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setComplement(e.target.value.toUpperCase())
                 }
                 value={complement}
@@ -453,7 +453,7 @@ const Customer: React.FC = () => {
                 label="Numero*"
                 name="number"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setNumber(e.target.value)
                 }
                 value={number}

@@ -1,15 +1,15 @@
 import { AxiosResponse } from "axios";
 import { ICustomer } from "../../models/customer";
-import client from "../axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import api from "../axios";
 
 export const useCustomerService = () => {
   const navigate = useNavigate();
 
   const save = async (customer: ICustomer): Promise<ICustomer | undefined> => {
     try {
-      const response: AxiosResponse<ICustomer> = await client.post<ICustomer>(
+      const response: AxiosResponse<ICustomer> = await api.post<ICustomer>(
         "/clients",
         customer
       );
@@ -30,7 +30,7 @@ export const useCustomerService = () => {
     newData: ICustomer
   ): Promise<ICustomer | undefined> => {
     try {
-      const response: AxiosResponse<ICustomer> = await client.put<ICustomer>(
+      const response: AxiosResponse<ICustomer> = await api.put<ICustomer>(
         `/clients/${customerId}`,
         newData
       );
@@ -44,7 +44,7 @@ export const useCustomerService = () => {
 
   const deleteId = async (customerId: string) => {
     try {
-      const response: AxiosResponse = await client.delete(
+      const response: AxiosResponse = await api.delete(
         `/clients/${customerId}`
       );
       toast.success("Cliente deletado com sucesso!!!");

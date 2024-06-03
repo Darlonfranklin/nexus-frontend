@@ -1,10 +1,11 @@
 import { InputAdornment, TextField } from "@mui/material";
 import { Fragment } from "react/jsx-runtime";
 import { Search as SearchUI } from "@mui/icons-material";
+import { ChangeEvent } from "react";
 
 interface ISearch {
   value?: string | number | boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Search: React.FC<ISearch> = ({ value, onChange }) => {

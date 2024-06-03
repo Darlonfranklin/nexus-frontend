@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
@@ -24,6 +23,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Tooltip } from "@mui/material";
 import { useCustomerService } from "../../services/customer";
 import { SearchOffOutlined } from "@mui/icons-material";
+import { ChangeEvent, MouseEvent, useState } from "react";
 
 interface Column {
   field: string;
@@ -40,19 +40,16 @@ interface TableProps {
   columns: Column[];
   rows: Row[];
   rowsPerPageOptions?: any[];
-  onPageChange?: (newPage: number) => void;
+  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
   onRowsPerPageChange?: (newRowsPerPage: number) => void;
-  onClick?: any;
+  onClick?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface TablePaginationActionsProps {
   count: number;
   page: number;
   rowsPerPage: number;
-  onPageChange: (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => void;
+  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
@@ -60,25 +57,25 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   const { count, page, rowsPerPage, onPageChange } = props;
 
   const handleFirstPageButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement> | null
+    event: MouseEvent<HTMLButtonElement> | null
   ) => {
     onPageChange(event, 0);
   };
 
   const handleBackButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement> | null
+    event: MouseEvent<HTMLButtonElement> | null
   ) => {
     onPageChange(event, page - 1);
   };
 
   const handleNextButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement> | null
+    event: MouseEvent<HTMLButtonElement> | null
   ) => {
     onPageChange(event, page + 1);
   };
 
   const handleLastPageButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement> | null
+    event: MouseEvent<HTMLButtonElement> | null
   ) => {
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
@@ -132,11 +129,11 @@ const TableList: React.FC<TableProps> = ({
   onPageChange,
   onRowsPerPageChange,
 }) => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(rowsPerPageOptions[0]);
-  const [customerId, setCustomerId] = React.useState<string>("");
   const navigate = useNavigate();
-  const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[0]);
+  const [customerId, setCustomerId] = useState<string>("");
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const { deleteId } = useCustomerService();
 
   const handleClickOpen = (id: string) => {
@@ -148,13 +145,18 @@ const TableList: React.FC<TableProps> = ({
     setOpenModal(false);
   };
 
-  const handleChangePage = (_event: any, newPage: number) => {
+  const handleChangePage = (
+    event: MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
     setPage(newPage);
-    onPageChange && onPageChange(newPage);
+    if (onPageChange) {
+      onPageChange(event, newPage);
+    }
   };
 
   const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);

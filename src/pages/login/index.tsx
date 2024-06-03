@@ -14,7 +14,7 @@ import {
 } from "./styles";
 import { CircularProgress, InputAdornment, Paper } from "@mui/material";
 import { useAuth } from "../../contexts/auth";
-import { Fragment, useState } from "react";
+import { ChangeEvent, Fragment, useState } from "react";
 
 const LoginPage: React.FC = () => {
   const { signIn, loading } = useAuth();
@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
   const [username, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     await signIn(username, password);
   };
@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
                 name="user"
                 type="text"
                 value={username}
-                onChange={(e: any) => setUserName(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value)}
                 fullWidth
                 InputLabelProps={{
                   shrink: true,
@@ -67,7 +67,7 @@ const LoginPage: React.FC = () => {
                 type="password"
                 fullWidth
                 value={password}
-                onChange={(e: any) => setPassword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                 InputLabelProps={{
                   shrink: true,
                   style: { fontSize: "0.9rem" },

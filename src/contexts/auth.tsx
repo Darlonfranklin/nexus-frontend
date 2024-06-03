@@ -1,11 +1,11 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AxiosResponse } from "axios";
-import client from "../services/axios";
 import { useNavigate } from "react-router-dom";
+import api from "../services/axios";
 
 type AuthProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 interface IAuthContext {
@@ -40,7 +40,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signIn = async (username: string, password: string) => {
     setLoading(true);
     try {
-      const response: AxiosResponse = await client.post("/login", {
+      const response: AxiosResponse = await api.post("/login", {
         username,
         password,
       });

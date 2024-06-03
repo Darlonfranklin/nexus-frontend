@@ -1,15 +1,14 @@
-import * as React from "react";
 import { ContainerList, Title } from "./styles";
 import TableList from "../../components/Table";
 import { useNavigate } from "react-router-dom";
-import client from "../../services/axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import Search from "../../components/Search";
 import { AxiosResponse } from "axios";
 import Button from "../../components/Button";
 import { ArrowBack, Reorder } from "@mui/icons-material";
 import { getColumns } from "../../columns/customer";
+import api from "../../services/axios";
 
 const List: React.FC = () => {
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ const List: React.FC = () => {
 
   const columns = getColumns();
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value.toUpperCase();
     setFilterText(text);
 
@@ -35,7 +34,7 @@ const List: React.FC = () => {
 
   const getCustomers = async () => {
     try {
-      const response: AxiosResponse = await client.get("/clients");
+      const response: AxiosResponse = await api.get("/clients");
       setCustomers(response.data);
     } catch (err: any) {
       toast.error("Erro ao carregar clientes!" + err.message);

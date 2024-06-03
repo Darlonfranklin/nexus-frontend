@@ -1,4 +1,4 @@
-import { ReactNode, MouseEvent } from "react";
+import { ReactNode, MouseEvent, CSSProperties } from "react";
 import { ButtonUI } from "./styles";
 
 interface IButton {
@@ -17,7 +17,7 @@ interface IButton {
     | "info"
     | "warning"
     | undefined;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 const Button: React.FC<IButton> = ({

@@ -11,7 +11,6 @@ import {
 } from "./styles";
 import { useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
-import client from "../../services/axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { ICustomer } from "../../models/customer";
 import Button from "../../components/Button";
@@ -20,6 +19,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import FeedIcon from "@mui/icons-material/Feed";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { toast } from "react-toastify";
+import api from "../../services/axios";
 
 const Information: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -42,7 +42,7 @@ const Information: React.FC = () => {
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
-        const response: AxiosResponse = await client.get(`/clients/${id}`);
+        const response: AxiosResponse = await api.get(`/clients/${id}`);
         setClientData(response.data);
       } catch (error) {
         console.error("Erro ao buscar os dados do cliente:", error);
@@ -54,7 +54,7 @@ const Information: React.FC = () => {
 
   const generateReport = async (): Promise<void> => {
     try {
-      const response: AxiosResponse = await client.get(
+      const response: AxiosResponse = await api.get(
         `/clients/relatorio/${id}`,
         {
           responseType: "blob",

@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const client = axios.create({
+const api = axios.create({
     baseURL: 'http://localhost:8080/'
 });
 
-client.interceptors.request.use(
+api.interceptors.request.use(
     config => {
         const token = localStorage.getItem("@nexus.application:token");
         if (token) {
@@ -16,4 +16,4 @@ client.interceptors.request.use(
         return Promise.reject(error);
     });
 
-export default client;
+export default api;

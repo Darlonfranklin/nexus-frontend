@@ -9,7 +9,7 @@ import {
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { insertMaskInCEP } from "../../functions/cep";
 import { insertMaskInCpf } from "../../functions/cpf";
 import { insertMaskInPhone } from "../../functions/phone";
@@ -34,11 +34,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { InputAdornment, MenuItem, Paper } from "@mui/material";
-import client from "../../services/axios";
 import { useCustomerService } from "../../services/customer";
 import { ICustomer } from "../../models/customer";
 import { AxiosResponse } from "axios";
 import Select from "../../components/Select";
+import api from "../../services/axios";
 
 const CustomerEdit: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -91,11 +91,11 @@ const CustomerEdit: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const checkCEP = async (e: any) => {
+  const checkCEP = async (e: ChangeEvent<HTMLInputElement>) => {
     const ceep = e.target.value;
 
     try {
-      const result = await client.get(`https://viacep.com.br/ws/${ceep}/json/`);
+      const result = await api.get(`https://viacep.com.br/ws/${ceep}/json/`);
       const { cep, logradouro, bairro, localidade, uf } = result.data;
       setCep(cep);
       setStreetName(logradouro);
@@ -110,7 +110,7 @@ const CustomerEdit: React.FC = () => {
   useEffect(() => {
     const fetchCustomerData = async () => {
       try {
-        const response: AxiosResponse = await client.get(`/clients/${id}`);
+        const response: AxiosResponse = await api.get(`/clients/${id}`);
         setClientData(response.data);
       } catch (error) {
         console.error("Erro ao buscar os dados do cliente:", error);
@@ -138,7 +138,7 @@ const CustomerEdit: React.FC = () => {
   const { update } = useCustomerService();
 
   const handleUpdate = async (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     id: string | undefined,
     data: ICustomer
   ) => {
@@ -147,19 +147,19 @@ const CustomerEdit: React.FC = () => {
     await update(customerId, data);
   };
 
-  const handleCepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCepChange = (event: ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value.replace(/[^\d]/g, "");
     const formattedCep = insertMaskInCEP(rawValue.slice(0, 8));
     setCep(formattedCep);
   };
 
-  const handleCpfChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCpfChange = (event: ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
     const formattedCpf = insertMaskInCpf(rawValue.slice(0, 14));
     setCpf(formattedCpf);
   };
 
-  const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
     const rawValue = event.target.value;
     const formattedPhone = insertMaskInPhone(rawValue.slice(0, 15));
     setPhone(formattedPhone);
@@ -174,7 +174,7 @@ const CustomerEdit: React.FC = () => {
         </Title>
         <Form
           component="form"
-          onSubmit={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onSubmit={(event: ChangeEvent<HTMLInputElement>) =>
             handleUpdate(event, id, data)
           }
         >
@@ -186,7 +186,7 @@ const CustomerEdit: React.FC = () => {
                 label="Nome*"
                 name="name"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setName(e.target.value.toUpperCase())
                 }
                 value={name}
@@ -241,7 +241,7 @@ const CustomerEdit: React.FC = () => {
                 name="sexo"
                 type="text"
                 value={sex}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setSex(e.target.value)
                 }
                 fullWidth
@@ -301,7 +301,7 @@ const CustomerEdit: React.FC = () => {
                 label="E-mail*"
                 name="email"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setEmail(e.target.value.toUpperCase())
                 }
                 value={email}
@@ -330,7 +330,7 @@ const CustomerEdit: React.FC = () => {
                 name="cep"
                 type="text"
                 value={cep}
-                onBlur={(e: React.ChangeEvent<HTMLInputElement>) => checkCEP(e)}
+                onBlur={(e: ChangeEvent<HTMLInputElement>) => checkCEP(e)}
                 onChange={(event: any) => handleCepChange(event)}
                 InputProps={{
                   style: {
@@ -460,7 +460,7 @@ const CustomerEdit: React.FC = () => {
                 label="Complemento*"
                 name="complement"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setComplement(e.target.value.toUpperCase())
                 }
                 value={complement}
@@ -488,7 +488,7 @@ const CustomerEdit: React.FC = () => {
                 label="Numero*"
                 name="number"
                 type="text"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   setNumber(e.target.value)
                 }
                 value={number}
