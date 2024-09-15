@@ -35,7 +35,7 @@ const menuPerson = [
       },
       {
         text: "Cadastro de fornecedor",
-        path: "supplier",
+        path: "fornecedor",
         icon: <ContactPhoneIcon />,
       },
     ],

@@ -40,7 +40,7 @@ interface TableProps {
   columns: Column[];
   rows: Row[];
   rowsPerPageOptions?: any[];
-  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
+  onPageChange?: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
   onRowsPerPageChange?: (newRowsPerPage: number) => void;
   onClick?: (event: ChangeEvent<HTMLInputElement>) => void;
 }

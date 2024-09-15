@@ -5,6 +5,8 @@ import List from "../pages/customer/list";
 import CustomerEdit from "../pages/customer/edit";
 import Dashboard from "../pages/dashboard";
 import Information from "../pages/customer/information";
+import Suplier from "../pages/suplier";
+import SuplierEdit from "../pages/suplier/edit";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -18,6 +20,12 @@ const AppRoutes: React.FC = () => {
           <Route path="cliente/listar" element={<List />} />
           <Route path="cliente/editar/:id" element={<CustomerEdit />} />
           <Route path="cliente/informações/:id" element={<Information />} />
+        </Route>
+        <Route path="/cadastros">
+          <Route path="fornecedor" element={<Suplier />} />
+          <Route path="fornecedor/listar" element={<List />} />
+          <Route path="fornecedor/editar/:id" element={<SuplierEdit />} />
+          <Route path="fornecedor/informações/:id" element={<Information />} />
         </Route>
       </Routes>
     </DrawerMenu>
