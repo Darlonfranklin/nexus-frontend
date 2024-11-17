@@ -1,23 +1,24 @@
 import { Box, Container as ContainerUi, Grid, Typography } from "@mui/material";
 import styled from "styled-components";
 
-export const BoxContainer = styled(Box)`
-  padding: 50px;
-  height: 60vh auto;
-`;
-
-export const GridContainer = styled(Grid)``;
-
-export const ContainerList = styled(ContainerUi)`
-max-width: 300vh !important;
-
-`;
+export const Form = styled(Box)``;
 
 export const ContainerForm = styled(ContainerUi)``;
 
 export const ContainerEdit = styled(ContainerUi)``;
 
 export const ContainerInformation = styled(ContainerUi)``;
+
+export const GridContainer = styled(Grid)``;
+
+export const BoxContainer = styled(Box)`
+  padding: 50px;
+  height: 60vh auto;
+`;
+
+export const ContainerList = styled(ContainerUi)`
+  max-width: 300vh !important;
+`;
 
 export const Title = styled(Typography)`
   margin-bottom: 50px !important;
@@ -43,5 +44,3 @@ export const Img = styled.img`
 export const GridContent = styled(Grid)`
   margin-bottom: 30px !important;
 `;
-
-export const Form = styled(Box)``;

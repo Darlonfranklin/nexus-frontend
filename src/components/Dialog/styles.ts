@@ -11,6 +11,8 @@ import {
 
 export const ContainerModal = styled(Dialog)``;
 
+export const ActionsModal = styled(DialogActions)``;
+
 export const TitleModal = styled(DialogTitle)`
   display: flex;
   align-items: center;
@@ -25,8 +27,6 @@ export const ContentModal = styled(DialogContent)`
 export const TextModal = styled(DialogContentText)`
   font-size: 20px !important;
 `;
-
-export const ActionsModal = styled(DialogActions)``;
 
 export const Attention = styled(ReportProblemIcon)`
    color: #FFFF00;
