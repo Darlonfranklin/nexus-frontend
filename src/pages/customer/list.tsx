@@ -17,7 +17,6 @@ const List: React.FC = () => {
 
   const [filteredRows, setFilteredRows] = useState<any>([]);
   const [filterText, setFilterText] = useState<string>("");
-
   const columns = getColumns();
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -47,17 +46,15 @@ const List: React.FC = () => {
 
   return (
     <ContainerList>
+
       <Title>
         <Reorder fontSize="medium" style={{ marginRight: 10 }} />
         CLIENTES CADASTRADOS
       </Title>
-      <Search value={filterText} onChange={handleFilterChange} />
-      <TableList
-        columns={columns}
-        onClick={() => navigate("/cadastros/cliente/editar")}
-        rows={filterText ? filteredRows : customers}
-      />
 
+      <Search value={filterText} onChange={handleFilterChange} />
+      <TableList columns={columns} onClick={() => navigate("/cadastros/cliente/editar")} rows={filterText ? filteredRows : customers} />
+        
       <Button
         onClick={() => navigate("/cadastros/cliente")}
         color="inherit"

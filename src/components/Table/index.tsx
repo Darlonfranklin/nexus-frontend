@@ -40,7 +40,10 @@ interface TableProps {
   columns: Column[];
   rows: Row[];
   rowsPerPageOptions?: any[];
-  onPageChange?: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
+  onPageChange?: (
+    event: MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => void;
   onRowsPerPageChange?: (newRowsPerPage: number) => void;
   onClick?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
@@ -49,7 +52,10 @@ interface TablePaginationActionsProps {
   count: number;
   page: number;
   rowsPerPage: number;
-  onPageChange: (event: MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
+  onPageChange: (
+    event: MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => void;
 }
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
@@ -155,9 +161,7 @@ const TableList: React.FC<TableProps> = ({
     }
   };
 
-  const handleChangeRowsPerPage = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
     onRowsPerPageChange &&
@@ -260,14 +264,12 @@ const TableList: React.FC<TableProps> = ({
               ))}
             </TableRow>
           ))}
-          {rows === undefined || rows.length === 0 ? (
+          {!rows?.length ? (
             <RowsLength>
               Nenhum cliente encontrado
               <SearchOffOutlined style={{ marginLeft: 8 }} />
             </RowsLength>
-          ) : (
-            true
-          )}
+          ) : null}
         </TableBody>
         <Modal
           text={"Deseja realmente exluir o registro ?"}

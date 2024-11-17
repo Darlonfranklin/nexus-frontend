@@ -9,10 +9,7 @@ export const useCustomerService = () => {
 
   const save = async (customer: ICustomer): Promise<ICustomer | undefined> => {
     try {
-      const response: AxiosResponse<ICustomer> = await api.post<ICustomer>(
-        "/clients",
-        customer
-      );
+      const response: AxiosResponse<ICustomer> = await api.post<ICustomer>("/clients", customer);
       toast.success("Salvo com sucesso!!!");
       return response.data;
     } catch (error: any) {
@@ -25,15 +22,9 @@ export const useCustomerService = () => {
     }
   };
 
-  const update = async (
-    customerId: string,
-    newData: ICustomer
-  ): Promise<ICustomer | undefined> => {
+  const update = async (customerId: string, newData: ICustomer): Promise<ICustomer | undefined> => {
     try {
-      const response: AxiosResponse<ICustomer> = await api.put<ICustomer>(
-        `/clients/${customerId}`,
-        newData
-      );
+      const response: AxiosResponse<ICustomer> = await api.put<ICustomer>(`/clients/${customerId}`, newData);
       toast.success("Dados do cliente atualizados com sucesso!!!");
       return response.data;
     } catch (error) {
@@ -44,9 +35,7 @@ export const useCustomerService = () => {
 
   const deleteId = async (customerId: string) => {
     try {
-      const response: AxiosResponse = await api.delete(
-        `/clients/${customerId}`
-      );
+      const response: AxiosResponse = await api.delete(`/clients/${customerId}`);
       toast.success("Cliente deletado com sucesso!!!");
       return response;
     } catch (error) {

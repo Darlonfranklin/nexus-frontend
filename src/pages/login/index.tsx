@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
                 name="user"
                 type="text"
                 value={username}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setUserName(e.target.value.trim())}
                 fullWidth
                 InputLabelProps={{
                   shrink: true,
@@ -67,7 +67,7 @@ const LoginPage: React.FC = () => {
                 type="password"
                 fullWidth
                 value={password}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value.trim())}
                 InputLabelProps={{
                   shrink: true,
                   style: { fontSize: "0.9rem" },

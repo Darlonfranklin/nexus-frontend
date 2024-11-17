@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { toast } from "react-toastify";
 import { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
@@ -40,10 +46,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const signIn = async (username: string, password: string) => {
     setLoading(true);
     try {
-      const response: AxiosResponse = await api.post("/login", {
-        username,
-        password,
-      });
+      const response: AxiosResponse = await api.post("/login", { username, password });
 
       const token = response.headers.authorization.split(" ")[1];
 
@@ -59,14 +62,15 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         toast.error("FALHA AO LOGAR! TOKEN NÃO ENCONTRADO!");
       }
     } catch (error: any) {
-      const statusCode = error.response.status;
+      const statusCode = error.response?.status;
       if (statusCode) {
         toast.warning("USUÁRIO / SENHA INCORRETOS!");
       } else {
         toast.error("Erro de conexão. Verifique sua rede e tente novamente.");
       }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const signOut = () => {

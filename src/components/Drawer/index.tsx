@@ -34,7 +34,7 @@ import {
   QueryBuilder,
 } from "@mui/icons-material";
 
-const drawerWidth = 290;
+const drawerWidth = 270;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -53,7 +53,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: `calc(${theme.spacing(7)} + 1px)`,
   },
 });
 

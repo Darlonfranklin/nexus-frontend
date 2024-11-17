@@ -6,7 +6,6 @@ import {
   GridContent,
   Title,
 } from "./styles";
-
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -137,11 +136,7 @@ const CustomerEdit: React.FC = () => {
 
   const { update } = useCustomerService();
 
-  const handleUpdate = async (
-    event: ChangeEvent<HTMLInputElement>,
-    id: string | undefined,
-    data: ICustomer
-  ) => {
+  const handleUpdate = async (event: ChangeEvent<HTMLInputElement>, id: string | undefined, data: ICustomer) => {
     event.preventDefault();
     const customerId: string = id ?? "";
     await update(customerId, data);
@@ -168,16 +163,13 @@ const CustomerEdit: React.FC = () => {
   return (
     <ContainerEdit maxWidth="xl">
       <BoxContainer component={Paper}>
+
         <Title>
           <EditIcon fontSize="medium" style={{ marginRight: 10 }} />
           EDITAR CLIENTE
         </Title>
-        <Form
-          component="form"
-          onSubmit={(event: ChangeEvent<HTMLInputElement>) =>
-            handleUpdate(event, id, data)
-          }
-        >
+
+        <Form component="form" onSubmit={(event: ChangeEvent<HTMLInputElement>) => handleUpdate(event, id, data)}>
           <GridContainer container spacing={1}>
             <GridContent item xs={12} sm={4}>
               <Input
@@ -186,14 +178,10 @@ const CustomerEdit: React.FC = () => {
                 label="Nome*"
                 name="name"
                 type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setName(e.target.value.toUpperCase())
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value.trimStart().toUpperCase())}
                 value={name}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -208,6 +196,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
@@ -217,9 +206,7 @@ const CustomerEdit: React.FC = () => {
                 onChange={handleCpfChange}
                 value={cpf}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -234,6 +221,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Select
                 size="small"
@@ -241,13 +229,9 @@ const CustomerEdit: React.FC = () => {
                 name="sexo"
                 type="text"
                 value={sex}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setSex(e.target.value)
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setSex(e.target.value)}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -278,9 +262,7 @@ const CustomerEdit: React.FC = () => {
                 value={phone}
                 onChange={handlePhoneChange}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -295,20 +277,17 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12}>
               <Input
                 size="small"
                 label="E-mail*"
                 name="email"
                 type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value.toUpperCase())
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value.trim().toUpperCase())}
                 value={email}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -323,6 +302,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
@@ -350,6 +330,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={6}>
               <Input
                 size="small"
@@ -359,9 +340,7 @@ const CustomerEdit: React.FC = () => {
                 value={streetName}
                 fullWidth
                 disabled={true}
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -376,6 +355,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
@@ -385,9 +365,7 @@ const CustomerEdit: React.FC = () => {
                 value={neighborhood}
                 disabled={true}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -402,6 +380,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
@@ -411,9 +390,7 @@ const CustomerEdit: React.FC = () => {
                 value={locality}
                 disabled={true}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -428,6 +405,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
@@ -437,9 +415,7 @@ const CustomerEdit: React.FC = () => {
                 value={uf}
                 disabled={true}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -454,20 +430,17 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
                 label="Complemento*"
                 name="complement"
                 type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setComplement(e.target.value.toUpperCase())
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setComplement(e.target.value.trim().toUpperCase())}
                 value={complement}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -482,20 +455,17 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
                 label="Numero*"
                 name="number"
                 type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setNumber(e.target.value)
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setNumber(e.target.value.trim())}
                 value={number}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -510,6 +480,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
@@ -519,9 +490,7 @@ const CustomerEdit: React.FC = () => {
                 disabled={true}
                 value={country}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: {
                     fontSize: "0.9rem",
@@ -536,6 +505,7 @@ const CustomerEdit: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <Button
               disabled={validation}
               type="submit"

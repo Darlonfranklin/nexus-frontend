@@ -31,6 +31,7 @@ import {
   PublicOutlined,
   PersonAddAlt1,
 } from "@mui/icons-material";
+
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -162,18 +163,15 @@ const Customer: React.FC = () => {
     setPhone(formattedPhone);
   };
 
-  const handleEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    const rawValue = event.target.value.toUpperCase();
-    setEmail(rawValue);
-  };
-
   return (
     <ContainerForm maxWidth="xl">
       <BoxContainer component={Paper}>
+
         <Title>
           <PersonAddAlt1 style={{ marginRight: 10 }} fontSize="medium" />
           CADASTRAR CLIENTE
         </Title>
+
         <Form component="form" onSubmit={handleSubmit} onReset={handleClear}>
           <GridContainer container spacing={1}>
             <GridContent item xs={12} sm={4}>
@@ -183,14 +181,10 @@ const Customer: React.FC = () => {
                 label="Nome*"
                 name="name"
                 type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setName(e.target.value.toUpperCase())
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value.trimStart().toUpperCase())}
                 value={name}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -201,6 +195,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
@@ -210,9 +205,7 @@ const Customer: React.FC = () => {
                 onChange={handleCpfChange}
                 value={cpf}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -227,6 +220,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Select
                 size="small"
@@ -234,13 +228,9 @@ const Customer: React.FC = () => {
                 name="sex"
                 type="text"
                 value={sex}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setSex(e.target.value)
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setSex(e.target.value)}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -267,9 +257,7 @@ const Customer: React.FC = () => {
                 value={phone}
                 onChange={handlePhoneChange}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -284,18 +272,17 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12}>
               <Input
                 size="small"
                 label="E-mail*"
                 name="email"
-                type="email"
-                onChange={handleEmail}
+                type="text"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value.trimStart().toUpperCase())}
                 value={email}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -306,6 +293,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
@@ -313,9 +301,7 @@ const Customer: React.FC = () => {
                 name="cep"
                 type="text"
                 value={cep}
-                onBlur={(e: ChangeEvent<HTMLInputElement>) =>
-                  searchCep(e)
-                }
+                onBlur={(e: ChangeEvent<HTMLInputElement>) => searchCep(e)}
                 onChange={(event: any) => handleCepChange(event)}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
@@ -335,6 +321,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={6}>
               <Input
                 size="small"
@@ -344,9 +331,7 @@ const Customer: React.FC = () => {
                 value={streetName}
                 fullWidth
                 disabled={true}
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -357,6 +342,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
@@ -366,9 +352,7 @@ const Customer: React.FC = () => {
                 value={neighborhood}
                 disabled={true}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -379,6 +363,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
@@ -388,9 +373,7 @@ const Customer: React.FC = () => {
                 value={locality}
                 disabled={true}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -401,6 +384,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
@@ -410,9 +394,7 @@ const Customer: React.FC = () => {
                 value={uf}
                 disabled={true}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -423,20 +405,17 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={3}>
               <Input
                 size="small"
                 label="Complemento*"
                 name="complement"
                 type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setComplement(e.target.value.toUpperCase())
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setComplement(e.target.value.trim().toUpperCase())}
                 value={complement}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -447,20 +426,17 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
                 label="Numero*"
                 name="number"
                 type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setNumber(e.target.value)
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setNumber(e.target.value.trim())}
                 value={number}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -471,6 +447,7 @@ const Customer: React.FC = () => {
                 }}
               />
             </GridContent>
+
             <GridContent item xs={12} sm={2}>
               <Input
                 size="small"
@@ -480,9 +457,7 @@ const Customer: React.FC = () => {
                 disabled={true}
                 value={country}
                 fullWidth
-                InputLabelProps={{
-                  style: { fontSize: "0.9rem" },
-                }}
+                InputLabelProps={{ style: { fontSize: "0.9rem" }}}
                 InputProps={{
                   style: { fontSize: "0.9rem", borderRadius: "1px" },
                   startAdornment: (
@@ -503,6 +478,7 @@ const Customer: React.FC = () => {
             >
               Salvar
             </Button>
+
             <Button
               color="error"
               type="reset"
@@ -512,6 +488,7 @@ const Customer: React.FC = () => {
             >
               Cancelar
             </Button>
+
             <Button
               color="success"
               variant="contained"
