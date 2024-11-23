@@ -107,7 +107,7 @@ const CustomerEdit: React.FC = () => {
   };
 
   useEffect(() => {
-    const fetchCustomerData = async () => {
+    const getCustomerData = async () => {
       try {
         const response: AxiosResponse = await api.get(`/clients/${id}`);
         setClientData(response.data);
@@ -116,7 +116,7 @@ const CustomerEdit: React.FC = () => {
       }
     };
 
-    fetchCustomerData();
+    getCustomerData();
   }, []);
 
   const setClientData = (customer: ICustomer) => {

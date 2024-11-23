@@ -9,21 +9,21 @@ import {
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-interface SubmenuItem {
+interface ISubmenuItem {
   text: string;
   icon: ReactElement;
   path: string;
 }
 
-interface MenuItem {
+interface IMenuItem {
   text: string;
   icon: ReactElement;
   path: string;
-  submenus?: SubmenuItem[];
+  submenus?: ISubmenuItem[];
 }
 
 interface ExpandableListProps {
-  items: MenuItem[];
+  items: IMenuItem[];
 }
 
 const ExpandableList: React.FC<ExpandableListProps> = ({ items }) => {

@@ -40,7 +40,7 @@ const Information: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCustomerData = async () => {
+    const getCustomerData = async () => {
       try {
         const response: AxiosResponse = await api.get(`/clients/${id}`);
         setClientData(response.data);
@@ -49,7 +49,7 @@ const Information: React.FC = () => {
       }
     };
 
-    fetchCustomerData();
+    getCustomerData();
   }, []);
 
   const generateReport = async (): Promise<void> => {

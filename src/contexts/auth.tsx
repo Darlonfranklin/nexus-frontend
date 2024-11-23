@@ -10,7 +10,7 @@ import { AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../services/axios";
 
-type AuthProviderProps = {
+type TAuthProviderProps = {
   children: ReactNode;
 };
 
@@ -24,7 +24,7 @@ interface IAuthContext {
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
-const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+const AuthProvider: React.FC<TAuthProviderProps> = ({ children }) => {
   const [logged, setLogged] = useState<boolean>(() => {
     const isLogged = localStorage.getItem("@nexus.application:logged");
     return !!isLogged;
@@ -91,7 +91,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 };
 
-function useAuth(): IAuthContext {
+const useAuth = (): IAuthContext => {
   const context = useContext(AuthContext);
   return context;
 }
