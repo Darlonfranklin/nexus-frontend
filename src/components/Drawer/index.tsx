@@ -36,6 +36,10 @@ import {
 
 const drawerWidth = 270;
 
+interface IAppBarProps extends MuiAppBarProps {
+  open?: boolean;
+}
+
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -53,7 +57,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(7)} + 1px)`,
+    width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
 
@@ -65,13 +69,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+})<IAppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   backgroundColor: "#0089BA",
   transition: theme.transitions.create(["width", "margin"], {

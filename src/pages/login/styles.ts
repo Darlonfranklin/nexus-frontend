@@ -10,28 +10,28 @@ export const BoxContainer = styled(Box)`
   padding: 40px;
   justify-content: center;
   align-items: center;
-  width: 100%; 
+  width: 100%;
   margin-top: 150px;
 `;
 
 export const Container = styled(ContainerUi)`
-  height: 100vh; 
+  height: 100vh;
   overflow-y: hidden;
 `;
 
 export const Title = styled.h3`
-    margin-bottom: 10px;
-    align-items: center;
-    display: flex;
-    color: gray;
+  margin-bottom: 10px;
+  align-items: center;
+  display: flex;
+  color: gray;
 `;
 
 export const GridContent = styled(Grid)`
-    margin-bottom: 30px !important;
+  margin-bottom: 30px !important;
 `;
 
 export const ImageLogo = styled.img`
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 `;
 
 export const Logo = styled.div`
@@ -47,13 +47,13 @@ export const Button = styled(ButtonUI)`
 `;
 
 export const Copyright = styled.footer`
-    width: 100%; 
-    position: fixed; 
-    bottom: 0;
-    padding: 5px 0; 
-    font-size: 11px;
-    
-    p {
-      margin-left: 10px;
-    }
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 5px 0;
+  font-size: 11px;
+
+  p {
+    margin-left: 10px;
+  }
 `;
