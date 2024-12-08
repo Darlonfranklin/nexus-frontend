@@ -14,12 +14,27 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import DescriptionIcon from "@mui/icons-material/Description";
 import BadgeIcon from "@mui/icons-material/Badge";
 import { Dashboard } from "@mui/icons-material";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import SettingsIcon from "@mui/icons-material/Settings";
+import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 
 const menuDashboard = [
   {
-    text: "Dashboard",
-    icon: <Dashboard />,
-    path: "dashboard",
+    text: "Gerenciamento",
+    icon: <BarChartIcon />,
+    submenus: [
+      {
+        text: "Dashboard",
+        path: "dashboard",
+        icon: <Dashboard />,
+      },
+      {
+        text: "Relatórios",
+        path: "dashboard",
+        icon: <DocumentScannerIcon />,
+      },
+    ],
   },
 ];
 
@@ -103,10 +118,26 @@ const menuMovimentation = [
   },
 ];
 
+const menuConfigurations = [
+  {
+    text: "Configurações",
+    icon: <SettingsIcon />,
+  },
+];
+
+const menuAssistant = [
+  {
+    text: "Assistência",
+    icon: <HeadsetMicIcon />,
+  },
+];
+
 export const menusItems = [
   menuDashboard,
   menuPerson,
   menuEmployees,
   menuMovimentation,
   menuPurchases,
+  menuConfigurations,
+  menuAssistant,
 ];

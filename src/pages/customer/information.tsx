@@ -54,12 +54,7 @@ const Information: React.FC = () => {
 
   const generateReport = async (): Promise<void> => {
     try {
-      const response: AxiosResponse = await api.get(
-        `/clients/relatorio/${id}`,
-        {
-          responseType: "blob",
-        }
-      );
+      const response: AxiosResponse = await api.get(`/clients/relatorio/${id}`, { responseType: "blob",});
       const reportBlob = response.data;
       const reportUrl = window.URL.createObjectURL(reportBlob);
       window.open(reportUrl, "_blank");

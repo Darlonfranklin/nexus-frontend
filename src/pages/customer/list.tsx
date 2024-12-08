@@ -1,7 +1,7 @@
 import { ContainerList, Title } from "./styles";
 import TableList from "../../components/Table";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import Search from "../../components/Search";
 import { AxiosResponse } from "axios";
@@ -17,6 +17,7 @@ const List: React.FC = () => {
 
   const [filteredRows, setFilteredRows] = useState<any>([]);
   const [filterText, setFilterText] = useState<string>("");
+
   const columns = getColumns();
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,21 +41,22 @@ const List: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    getCustomers();
-  }, []);
+  getCustomers();
 
   return (
     <ContainerList>
-
       <Title>
         <Reorder fontSize="medium" style={{ marginRight: 10 }} />
         CLIENTES CADASTRADOS
       </Title>
 
       <Search value={filterText} onChange={handleFilterChange} />
-      <TableList columns={columns} onClick={() => navigate("/cadastros/cliente/editar")} rows={filterText ? filteredRows : customers} />
-        
+      <TableList
+        columns={columns}
+        onClick={() => navigate("/cadastros/cliente/editar")}
+        rows={filterText ? filteredRows : customers}
+      />
+
       <Button
         onClick={() => navigate("/cadastros/cliente")}
         color="inherit"
